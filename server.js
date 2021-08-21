@@ -3,10 +3,11 @@ const app = express();
 
 require("dotenv").config();
 
+app.use(express.static("public"));
+
 app.get("/diylifestyle", (req, res) => {
   console.log("got it");
-  res.send("Hello World");
-  //   res.render("homepage.ejs");
+  res.render("homepage.ejs");
 });
 
 app.listen(process.env.PORT, () => {
