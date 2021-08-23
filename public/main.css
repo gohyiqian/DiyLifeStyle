@@ -1,8 +1,6 @@
 body {
   background-image: url(images/background.jpg);
-  background-repeat: repeat-x;
   background-size: cover;
-  height: 100vh;
   text-align: center;
   font-size: 20px;
 }
