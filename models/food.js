@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-// Create the food Schema
-const foodSchema = new mongoose.Schema(
+// Create the Food Schema
+const foodSchema = new Schema(
   {
     name: { type: String, required: true },
-    calories: { type: Number, max: 2000 },
+    description: { type: String, required: true },
+    img: String,
+    price: { type: Schema.Types.Decimal128, required: true, min: 0.01 },
+    qty: { type: Number, required: true },
+    calories: { type: Number, max: 2000, required: true },
     nutrition: {
       carbohydrates: String,
       fat: String,
@@ -22,12 +27,12 @@ const foodSchema = new mongoose.Schema(
       e: String,
     },
     ingredients: [String],
-    readyToEat: Boolean,
-    scheduled: Boolean,
+    // readyToEat: Boolean,
+    // scheduled: Boolean,
   },
   { timestamps: true }
 );
 
-const Food = mongoose.model("Food", fruitSchema);
+const Food = mongoose.model("Food", foodSchema);
 
 module.exports = Food;
