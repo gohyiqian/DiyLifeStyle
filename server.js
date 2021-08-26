@@ -34,18 +34,18 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 
-app.use((req, res, next) => {
-  res.locals.username = req.session.username;
-  next();
-});
+// app.use((req, res, next) => {
+//   res.locals.username = req.session.username;
+//   next();
+// });
 
 // SEEDING
 // app.get("/seeds", async (req, res) => {
