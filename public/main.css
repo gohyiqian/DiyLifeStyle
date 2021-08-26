@@ -11,23 +11,16 @@ body {
   justify-content: center;
 }
 
-.navbar {
-  display: flex;
-  -webkit-box-align: center;
-}
-
-@media (min-width: 768px) {
-  .navbar-expand-md .navbar-toggler {
-    display: none;
-  }
-}
-
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
   height: auto;
   padding: 10px;
   font-size: 16px;
+}
+.nav-item {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .mainfont {
@@ -44,13 +37,6 @@ body {
   font-size: large;
   font-weight: 600;
   padding-top: 1rem;
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
 }
 
 th,
@@ -137,5 +123,11 @@ img:hover {
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-toggler {
+    display: none;
   }
 }
