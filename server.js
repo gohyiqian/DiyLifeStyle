@@ -2,14 +2,14 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const db = mongoose.connection;
+
 const methodOverride = require("method-override");
 const session = require("express-session");
 require("dotenv").config();
 
 // CONGFIG
-const mongoURI = "mongodb://localhost:27017/storageWeb";
-const port = 3000;
+const mongoURI = process.env.MONGO_URI;
+const db = mongoose.connection;
 
 // MODELS
 const foodSeed = require("./models/seeds.js");
@@ -93,6 +93,6 @@ const server = app.listen(process.env.PORT, () => {
 //   console.log("Process is exiting...");
 
 //   server.close(() => {
-//     dbConnection.close();
+//     db.close();
 //   });
 // });
