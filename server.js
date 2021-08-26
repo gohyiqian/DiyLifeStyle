@@ -61,7 +61,6 @@ app.use((req, res, next) => {
 // GET -- index page (Main Store Page)
 app.get("/diylifestyle", async (req, res) => {
   const results = await Food.find();
-  await console.log(Food.find());
   // Get query parameters success and action
   // If have, we display alert banners
   // If not, no alert banners should be displayed
@@ -90,10 +89,10 @@ const server = app.listen(process.env.PORT, () => {
 });
 
 // GRACEFUL SHUTDOWN
-process.on("SIGTERM", () => {
-  console.log("Process is exiting...");
+// process.on("SIGTERM", () => {
+//   console.log("Process is exiting...");
 
-  server.close(() => {
-    dbConnection.close();
-  });
-});
+//   server.close(() => {
+//     dbConnection.close();
+//   });
+// });
