@@ -48,29 +48,19 @@ app.use(methodOverride("_method"));
 // });
 
 // SEEDING
-// app.get("/seeds", async (req, res) => {
-//   try {
-//     // await Food.collection.drop();
-//     await Food.create(foodSeed);
-//     res.send("Food seeded successfully");
-//   } catch (err) {
-//     console.log("Read Error Message here: ", err);
-//   }
-// });
+app.get("/seeds", async (req, res) => {
+  try {
+    // await Food.collection.drop();
+    await Food.create(foodSeed);
+    res.send("Food seeded successfully");
+  } catch (err) {
+    console.log("Read Error Message here: ", err);
+  }
+});
 
-// GET -- index page (Main Store Page)
+// GET -- homepage page
 app.get("/diylifestyle", async (req, res) => {
-  const results = await Food.find();
-  // Get query parameters success and action
-  // If have, we display alert banners
-  // If not, no alert banners should be displayed
-  const success = req.query.success;
-  const action = req.query.action;
-  res.render("posts/homepage.ejs", {
-    data: results,
-    success,
-    action,
-  });
+  res.render("posts/homepage.ejs");
 });
 
 // GET - loginpage.ejs
@@ -78,9 +68,55 @@ app.get("/diylifestyle/login", (req, res) => {
   res.render("posts/loginpage.ejs");
 });
 
+// GET -- index page (Page with all items)
+app.get("/diylifestyle/index", async (req, res) => {
+  const results = await Food.find();
+  // Get query parameters success and action
+  // If have, we display alert banners
+  // If not, no alert banners should be displayed
+  const success = req.query.success;
+  const action = req.query.action;
+  res.render("posts/index.ejs", {
+    data: results,
+    success,
+    action,
+  });
+});
+
 // NEW -- new.ejs
-app.get("/product/new", (req, res) => {
+app.get("/diylifestyle/new", (req, res) => {
   res.render("posts/new.ejs");
+});
+
+// SHOW -- show.ejs
+app.get("/diylifestyle/:id", async (req, res) => {
+  const item = await Food.findById(req.params.id);
+  const success = req.query.success;
+  const action = req.query.action;
+  res.render("posts/show.ejs", {
+    data: item,
+    success,
+    action,
+  });
+});
+
+// EDIT -- edit.ejs
+app.get("/diylifestyle/:id/edit", async (req, res) => {
+  const item = await Food.findById(req.params.id);
+  res.render("posts/edit.ejs", { data: item });
+});
+
+// PUT -- for editing
+app.put("/diylifestyle/:id", async (req, res) => {
+  await Food.updateOne({ _id: req.params.id }, req.body);
+  console.log(req.body);
+  res.redirect(`/diylifestyle/${req.params.id}?success=true&action=update`);
+});
+
+// DELETE
+app.delete("/diylifestyle/:id", async (req, res) => {
+  await Food.deleteOne({ _id: req.params.id });
+  res.redirect("/diylifestyle/index/?success=true&action=delete");
 });
 
 // LISTEN

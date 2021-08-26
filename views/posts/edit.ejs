@@ -1,0 +1,29 @@
+<%- include("../partials/header.ejs") %>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col py-4">   
+                <form action="/diylifestyle/<%= data.id %>?_method=PUT" method="POST">
+                    <div>
+                        <label for="name"><strong>Name:</strong></label> <br>
+                        <input type="text" name="name" id="name" placeholder="anything creative" value="<%=data.name%>" required /> <br><br>
+                    </div>
+                    <div>
+                        <label for="description"><strong>Description:</strong></label> <br>
+                        <input type="text" size=50 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
+                    </div>
+                    <div>
+                        <label for="qty"><strong>Quantity:</strong></label> <br>             
+                        <input type="number" min="0" value="<%= data.qty %>" name="qty" id="qty" required /> 
+                    </div>
+                    <input type="submit" class="btn btn-secondary my-2" value="Update Product" />
+                </form>
+            </div>
+        </div>
+        <a href="/diylifestyle" class="btn btn-warning my-2">Back to Store</a>
+    </div>  
+
+    </div>
+</body>
+
+</html>

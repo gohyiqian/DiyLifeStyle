@@ -1,0 +1,32 @@
+<%- include("../partials/header.ejs") %>
+<body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="<%= data.img %>" height=600 width=600></img>
+                </div>
+                <div class="col py-4">
+                    <div class="card shadow-lg border-dark mb-3 allProducts">
+                        <h1><%= data.name %></h1>
+                        <div><%= data.description %></div> <br>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Price: S$<%= Number.parseFloat(data.price).toFixed(2) %></li>
+                            <% if (data.qty > 0) { %>
+                                <li class="list-group-item">Quantity Left: <%= data.qty %> </li>                                             
+                                <li class="list-group-item"><a href="#" class="btn btn-secondary">ADD TO MEAL PLAN</a></li>
+                            <% } else { %>
+                                <li class="list-group-item" style="color: red;">Sold Out!</li>  
+                            <% } %>
+                                <li class="list-group-item"><a href="/diylifestyle/<%= data.id %>/edit" class="btn btn-secondary my-2">EDIT DISH</a></li>
+                        </ul>
+                        <form action="/diylifestyle/<%= data.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-warning my-2" value="DELETE"/>DELETE DISH</button>
+                        </form>
+                        <%- include("../partials/alert.ejs") %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="/app.js"></script>
+</body>
+</html>
