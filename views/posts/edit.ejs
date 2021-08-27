@@ -2,70 +2,21 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col py-5">
+            <div class="col">
                 <img src="<%= data.img %>" height=600 width=600></img>
             </div>
             <div class="col">
                 <div class="tab shadow-lg border-dark">
-                    <button class="tablinks" onclick="openCity(event, 'ingredients')" id="defaultOpen">Ingredients</button>
-                    <button class="tablinks" onclick="openCity(event, 'Paris')">Quantity</button>
-                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Toppings</button>
-                  </div>
-                  <div id="ingredients" class="tabcontent shadow-lg border-dark">
+                    <button class="tablinks" onclick="openCity(event, 'details')"id="defaultOpen">Dish Details</button>
+                    <button class="tablinks" onclick="openCity(event, 'ingredients')">Base Ingredients</button>
+                    <button class="tablinks" onclick="openCity(event, 'quantity')">Quantity</button>
+                    <button class="tablinks" onclick="openCity(event, 'toppings')">Toppings</button>
+                </div>
+
+                <div id="details" class="tabcontent shadow-lg border-dark">
                     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Ingredients</h3>
-                    <p>Choose your base ingredients for the dish</p>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                  </div>
-                  
-                  <div id="Paris" class="tabcontent shadow-lg border-dark">
-                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Quantity</h3>
-                    <p>Choose your quantity for the dish</p> 
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                  </div>
-                  
-                  <div id="Tokyo" class="tabcontent shadow-lg border-dark">
-                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Toppings</h3>
-                    <p>Pick your final touches!</p>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                  </div>
-                  
-                <div class="card shadow-lg border-dark mb-3"> 
+                    <h3>Edit Details</h3>
+                    <p>Rename or edit the descriptions to your liking!</p>
                     <form action="/diylifestyle/<%= data.id %>?_method=PUT" method="POST">
                         <div>
                             <label for="name"><strong>Name:</strong></label> <br>
@@ -82,9 +33,63 @@
                         <input type="submit" class="btn btn-secondary my-2" value="Update Product" />
                     </form>
                 </div>
+
+                <div id="ingredients" class="tabcontent shadow-lg border-dark">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Base Ingredients</h3>
+                    <p>Choose your base ingredients for the dish</p>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
+                        <p><%= data.ingredients[0] %>: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                </div>
+                  
+                <div id="quantity" class="tabcontent shadow-lg border-dark">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Quantity</h3>
+                    <p>Choose your quantity for the dish</p> 
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                </div>
+                  
+                <div id="toppings" class="tabcontent shadow-lg border-dark">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Toppings</h3>
+                    <p>Pick your final touches!</p>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                </div>
             </div>
         </div>
-        <a href="/diylifestyle/index" class="btn btn-warning my-2">Back to Store</a>
+        <a href="/diylifestyle/index" class="btn btn-warning my-2">Back to Details</a>
     </div>  
 
     </div>
