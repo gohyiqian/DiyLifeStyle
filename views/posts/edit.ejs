@@ -2,28 +2,117 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col py-4">   
-                <form action="/diylifestyle/<%= data.id %>?_method=PUT" method="POST">
-                    <div>
-                        <label for="name"><strong>Name:</strong></label> <br>
-                        <input type="text" name="name" id="name" placeholder="anything creative" value="<%=data.name%>" required /> <br><br>
+            <div class="col py-5">
+                <img src="<%= data.img %>" height=600 width=600></img>
+            </div>
+            <div class="col">
+                <div class="tab shadow-lg border-dark">
+                    <button class="tablinks" onclick="openCity(event, 'ingredients')" id="defaultOpen">Ingredients</button>
+                    <button class="tablinks" onclick="openCity(event, 'Paris')">Quantity</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Toppings</button>
+                  </div>
+                  <div id="ingredients" class="tabcontent shadow-lg border-dark">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Ingredients</h3>
+                    <p>Choose your base ingredients for the dish</p>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
                     </div>
-                    <div>
-                        <label for="description"><strong>Description:</strong></label> <br>
-                        <input type="text" size=50 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
                     </div>
-                    <div>
-                        <label for="qty"><strong>Quantity:</strong></label> <br>             
-                        <input type="number" min="0" value="<%= data.qty %>" name="qty" id="qty" required /> 
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
                     </div>
-                    <input type="submit" class="btn btn-secondary my-2" value="Update Product" />
-                </form>
+                  </div>
+                  
+                  <div id="Paris" class="tabcontent shadow-lg border-dark">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Quantity</h3>
+                    <p>Choose your quantity for the dish</p> 
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                  </div>
+                  
+                  <div id="Tokyo" class="tabcontent shadow-lg border-dark">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Toppings</h3>
+                    <p>Pick your final touches!</p>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                  </div>
+                  
+                <div class="card shadow-lg border-dark mb-3"> 
+                    <form action="/diylifestyle/<%= data.id %>?_method=PUT" method="POST">
+                        <div>
+                            <label for="name"><strong>Name:</strong></label> <br>
+                            <input type="text" name="name" id="name" placeholder="anything creative" value="<%=data.name%>" required /> <br><br>
+                        </div>
+                        <div>
+                            <label for="description"><strong>Description:</strong></label> <br>
+                            <input type="text" size=50 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
+                        </div>
+                        <div>
+                            <label for="qty"><strong>Quantity:</strong></label> <br>             
+                            <input type="number" min="0" value="<%= data.qty %>" name="qty" id="qty" required /> 
+                        </div>
+                        <input type="submit" class="btn btn-secondary my-2" value="Update Product" />
+                    </form>
+                </div>
             </div>
         </div>
-        <a href="/diylifestyle" class="btn btn-warning my-2">Back to Store</a>
+        <a href="/diylifestyle/index" class="btn btn-warning my-2">Back to Store</a>
     </div>  
 
     </div>
 </body>
+<script>
+    const slider = document.getElementById("myRange");
+    const output = document.getElementById("demo");
+    output.innerHTML = slider.value;
 
+    slider.oninput = function() {
+    output.innerHTML = this.value;
+}
+
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 </html>

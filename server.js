@@ -88,6 +88,13 @@ app.get("/diylifestyle/new", (req, res) => {
   res.render("posts/new.ejs");
 });
 
+// POST - add new items
+app.post("/diylifestyle", async (req, res) => {
+  console.log(req.body);
+  await Food.create(req.body);
+  res.redirect("/diylifestyle/index?success=true&action=create");
+});
+
 // SHOW -- show.ejs
 app.get("/diylifestyle/:id", async (req, res) => {
   const item = await Food.findById(req.params.id);
