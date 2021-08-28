@@ -58,7 +58,7 @@ app.get("/seeds", async (req, res) => {
 });
 
 // GET -- homepage page
-app.get("/diylifestyle", async (req, res) => {
+app.get("/", async (req, res) => {
   res.render("posts/homepage.ejs");
 });
 
