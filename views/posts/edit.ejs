@@ -1,9 +1,9 @@
 <%- include("../partials/header.ejs") %>
 <body>
-    <div class="container">
+    <div class="container countertop shadow-lg">
         <div class="row">
             <div class="col">
-                <img src="<%= data.img %>" height=600 width=600></img>
+                <img src="<%= data.img %>" height=500 width=500></img>
             </div>
             <div class="col">
                 <div class="tab shadow-lg border-dark">
@@ -24,7 +24,7 @@
                         </div>
                         <div>
                             <label for="description"><strong>Description:</strong></label> <br>
-                            <input type="text" size=50 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
+                            <input type="text" size=40 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
                         </div>
                         <div>
                             <label for="qty"><strong>Quantity:</strong></label> <br>             
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <a href="/diylifestyle/index" class="btn btn-warning my-2">Back to Details</a>
+        <a href="/diylifestyle/<%= data.id %>" class="btn btn-warning my-2">Back to Details</a>
     </div>  
 
     </div>

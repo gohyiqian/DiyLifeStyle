@@ -11,6 +11,18 @@ body {
   justify-content: center;
 }
 
+.tablecloth {
+  background-image: url(images/tablecloth.jpg);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.countertop {
+  background-image: url(images/countertop.jpg);
+  padding: 10px;
+  border-radius: 20px;
+}
+
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
