@@ -64,7 +64,7 @@ app.get("/diylifestyle", async (req, res) => {
 
 // GET - loginpage.ejs
 app.get("/diylifestyle/login", (req, res) => {
-  res.render("posts/loginpage.ejs");
+  res.render("users/loginpage.ejs");
 });
 
 // GET -- index page (Page with all items)
