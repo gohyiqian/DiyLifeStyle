@@ -14,7 +14,7 @@ const db = mongoose.connection;
 const foodSeed = require("./models/seeds.js");
 const Food = require("./models/food.js");
 
-// CONNECT TO MONGO
+// CONNECT TO MONGODB
 mongoose.connect(
   mongoURI,
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
@@ -23,7 +23,7 @@ mongoose.connect(
   }
 );
 
-// ERROR/SUCCESS
+// CHECK ERROR/SUCCESS
 db.on("connected", () => console.log("My database is connected"));
 db.on("error", (err) => console.log(`Got error! ${err.message}`));
 db.on("disconnected", () => console.log("My database is disconnected"));
@@ -33,18 +33,19 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//   })
-// );
+// USER LOGIN
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-// app.use((req, res, next) => {
-//   res.locals.username = req.session.username;
-//   next();
-// });
+app.use((req, res, next) => {
+  res.locals.username = req.session.username;
+  next();
+});
 
 // SEEDING
 app.get("/seeds", async (req, res) => {
@@ -62,9 +63,9 @@ app.get("/", async (req, res) => {
   res.render("posts/homepage.ejs");
 });
 
-// GET - loginpage.ejs
+// GET - login.ejs
 app.get("/diylifestyle/login", (req, res) => {
-  res.render("users/loginpage.ejs");
+  res.render("users/login.ejs");
 });
 
 // GET -- index page (Page with all items)
@@ -117,6 +118,15 @@ app.put("/diylifestyle/:id", async (req, res) => {
   await Food.updateOne({ _id: req.params.id }, req.body);
   console.log(req.body);
   res.redirect(`/diylifestyle/${req.params.id}?success=true&action=update`);
+});
+
+// GET - login
+app.get("/login", (req, res) => {
+  if (!req.session.username) {
+    res.render("users/login.ejs");
+  } else {
+    res.redirect("/");
+  }
 });
 
 // DELETE
