@@ -127,7 +127,7 @@ app.delete("/diylifestyle/:id", async (req, res) => {
 
 app.use("*", (req, res) => {
   res.status(404);
-  res.send("Page is not foundddd");
+  res.send("Page is not found");
 });
 
 // LISTEN
