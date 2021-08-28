@@ -34,6 +34,33 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
+.nav-link:hover {
+  font-weight: bold;
+}
+
+.navbar-collapse {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+/* .collapse .show {
+  display: block;
+} */
+
+/* .collapse {
+  display: none;
+} */
+
+.navbar-toggler {
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
 
 .mainfont {
   margin-top: 350px;
@@ -76,12 +103,13 @@ td:last-child {
   overflow: hidden;
   border: 3px solid #ccc;
   background-color: #f1f1f1;
-  border-radius: 25px;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
-  background-color: inherit;
+  background-color: #ccc;
   float: left;
   border: none;
   outline: none;
@@ -98,7 +126,7 @@ td:last-child {
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  background-color: inherit;
 }
 
 /* Style the tab content */
@@ -108,7 +136,12 @@ td:last-child {
   border: 3px solid #ccc;
   border-top: none;
   background-color: #f1f1f1;
-  border-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.tab button:hover {
+  font-weight: bold;
 }
 
 /* Style the close button */

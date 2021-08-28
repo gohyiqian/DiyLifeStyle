@@ -7,10 +7,10 @@
             </div>
             <div class="col">
                 <div class="tab shadow-lg border-dark">
-                    <button class="tablinks" onclick="openCity(event, 'details')"id="defaultOpen">Dish Details</button>
-                    <button class="tablinks" onclick="openCity(event, 'ingredients')">Base Ingredients</button>
-                    <button class="tablinks" onclick="openCity(event, 'quantity')">Quantity</button>
-                    <button class="tablinks" onclick="openCity(event, 'toppings')">Toppings</button>
+                    <button class="tablinks" onclick="changeTab(event, 'details')"id="defaultOpen">Dish Details</button>
+                    <button class="tablinks" onclick="changeTab(event, 'ingredients')">Base Ingredients</button>
+                    <button class="tablinks" onclick="changeTab(event, 'quantity')">Quantity</button>
+                    <button class="tablinks" onclick="changeTab(event, 'toppings')">Toppings</button>
                 </div>
 
                 <div id="details" class="tabcontent shadow-lg border-dark">
@@ -94,30 +94,5 @@
 
     </div>
 </body>
-<script>
-    const slider = document.getElementById("myRange");
-    const output = document.getElementById("demo");
-    output.innerHTML = slider.value;
-
-    slider.oninput = function() {
-    output.innerHTML = this.value;
-}
-
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
+<script type="text/javascript" src="/app.js"></script>
 </html>
