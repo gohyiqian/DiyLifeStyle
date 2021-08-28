@@ -24,9 +24,9 @@ mongoose.connect(
 );
 
 // ERROR/SUCCESS
-db.on("error", (err) => console.log(err.message + " is Mongod not running?"));
-db.on("connected", () => console.log("mongo connected: ", mongoURI));
-db.on("disconnected", () => console.log("mongo disconnected"));
+db.on("connected", () => console.log("My database is connected"));
+db.on("error", (err) => console.log(`Got error! ${err.message}`));
+db.on("disconnected", () => console.log("My database is disconnected"));
 
 // MIDDLEWARE
 app.use(express.static("public"));
@@ -125,16 +125,21 @@ app.delete("/diylifestyle/:id", async (req, res) => {
   res.redirect("/diylifestyle/index/?success=true&action=delete");
 });
 
+app.use("*", (req, res) => {
+  res.status(404);
+  res.send("Page is not foundddd");
+});
+
 // LISTEN
 const server = app.listen(process.env.PORT, () => {
   console.log(`Server is listening on port: ${process.env.PORT}`);
 });
 
 // GRACEFUL SHUTDOWN
-// process.on("SIGTERM", () => {
-//   console.log("Process is exiting...");
+process.on("SIGTERM", () => {
+  console.log("Process is exiting...");
 
-//   server.close(() => {
-//     db.close();
-//   });
-// });
+  server.close(() => {
+    db.close();
+  });
+});
