@@ -1,14 +1,15 @@
 <%- include("../partials/header.ejs") %>
+<body class="orangeBackground">
     <main>
         <%- include("../partials/alert.ejs") %>
         <a href="/diylifestyle/new" class="btn btn-secondary mb-5">ADD NEW DISH</a>
-        <div class="container-md ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-5 allProducts">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 allProducts">
                 <% data.forEach ( (ele) => { %>
                 <div class="col animating" style="opacity: 1; top: 0px; left: 0px; transform: matrix(1, 0, 0, 1, 0, 0);">
-                    <div class="card shadow-lg border-dark mb-3" style="height: 33rem;">
+                    <div class="card shadow-lg mb-3" style="height: 33rem;">
                         <div class="card-body">
-                            <a href="/diylifestyle/<%= ele.id %>"><img src="<%= ele.img %>" alt="diylifestyle" height="250px"/></a>
+                            <a href="/diylifestyle/<%= ele.id %>"><img src="<%= ele.img %>" alt="diylifestyle" height="245px"/></a>
                             <h5 class="card-title"><a href="/diylifestyle/<%= ele.id %>"><%= ele.name %></h5></a>
                             <ul class="list-group list-group-flush shadow-lg">
                                 <li class="list-group-item">Price: S$<%= Number.parseFloat(ele.price).toFixed(2) %></li>

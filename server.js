@@ -1,5 +1,6 @@
 // DEPENDENCIES
 const express = require("express");
+const bcrypt = require("bcrypt");
 const app = express();
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -13,6 +14,7 @@ const db = mongoose.connection;
 // MODELS
 const foodSeed = require("./models/seeds.js");
 const Food = require("./models/food.js");
+const User = require("./models/users.js");
 
 // CONNECT TO MONGODB
 mongoose.connect(
@@ -66,6 +68,25 @@ app.get("/", async (req, res) => {
 // GET - login.ejs
 app.get("/diylifestyle/login", (req, res) => {
   res.render("users/login.ejs");
+});
+
+// GET - signup.ejs
+app.get("/diylifestyle/signup", (req, res) => {
+  res.render("users/signup.ejs");
+});
+
+app.post("/users/signup", async (req, res) => {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    await User.create({
+      username: req.body.username,
+      password: hashedPassword,
+    });
+    res.send("Ok, your account has been created.");
+  } catch (err) {
+    res.send(`Unable to create a new account: ${err.message}`);
+  }
 });
 
 // GET -- index page (Page with all items)

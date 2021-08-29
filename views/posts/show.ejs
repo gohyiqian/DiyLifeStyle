@@ -1,12 +1,12 @@
 <%- include("../partials/header.ejs") %>
-<body>
+<body class="orangeBackground">
         <div class="container tablecloth">
             <div class="row">
                 <div class="col">
                     <img src="<%= data.img %>" height=500 width=500></img>
                 </div>
                 <div class="col py-4">
-                    <div class="card shadow-lg border-dark mb-3 allProducts">
+                    <div class="card shadow-lg mb-3 allProducts">
                         <h1><%= data.name %></h1>
                         <div><%= data.description %></div> <br>
                         <ul class="list-group list-group-flush">
