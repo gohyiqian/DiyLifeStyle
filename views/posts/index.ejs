@@ -14,8 +14,8 @@
                             <ul class="list-group list-group-flush shadow-lg">
                                 <li class="list-group-item">Price: S$<%= Number.parseFloat(ele.price).toFixed(2) %></li>
                                 <% if (ele.qty > 0) { %>
-                                <li class="list-group-item">Quantity Left: <%= ele.qty %> </li>                                             
-                                <li class="list-group-item"><button id="/diylifestyle/<%= ele.id %>" class="btn btn-secondary buyItemBtn" >BUY</button></li>
+                                <li class="list-group-item">Quantity Selected: <%= ele.qty %> </li>                                             
+                                <li class="list-group-item"><button id="/diylifestyle/<%= ele.id %>" class="btn btn-secondary buyItemBtn">ADD TO CALENDAR</button></li>
                                 <% } else { %>
                                 <li class="list-group-item" style="color: red;">Sold Out!</li>  
                                 <% } %>

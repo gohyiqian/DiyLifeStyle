@@ -1,4 +1,6 @@
 "use strict";
+
+// slider on edit page
 const slider = document.getElementById("myRange");
 const output = document.getElementById("demo");
 output.innerHTML = slider.value;
@@ -7,6 +9,7 @@ slider.oninput = function () {
   output.innerHTML = this.value;
 };
 
+// Tabs on edit page
 function changeTab(evt, cityName) {
   let i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
