@@ -48,6 +48,9 @@ body {
 .nav-link:hover {
   font-weight: bold;
 }
+.btn:hover {
+  font-weight: bold;
+}
 
 .navbar-collapse {
   -webkit-box-flex: 1;

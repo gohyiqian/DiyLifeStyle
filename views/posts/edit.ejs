@@ -7,15 +7,16 @@
             </div>
             <div class="col">
                 <div class="tab shadow-lg">
-                    <button class="tablinks" onclick="changeTab(event, 'details')"id="defaultOpen">Dish Details</button>
-                    <button class="tablinks" onclick="changeTab(event, 'ingredients')">Base Ingredients</button>
-                    <button class="tablinks" onclick="changeTab(event, 'quantity')">Quantity</button>
+                    <button class="tablinks" onclick="changeTab(event, 'details')"id="defaultOpen">Details</button>
+                    <button class="tablinks" onclick="changeTab(event, 'ingredients')">Ingredients</button>
                     <button class="tablinks" onclick="changeTab(event, 'toppings')">Toppings</button>
+                    <button class="tablinks" onclick="changeTab(event, 'nutrients')">Nutrients</button>
+                    <button class="tablinks" onclick="changeTab(event, 'vitamins')">Vitamins</button>
                 </div>
 
                 <div id="details" class="tabcontent shadow-lg">
                     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Edit Details</h3>
+                    <h3>Edit Dish Details</h3>
                     <p>Rename or edit the descriptions to your liking!</p>
                     <form action="/diylifestyle/<%= data.id %>?_method=PUT" method="POST">
                         <div>
@@ -24,11 +25,11 @@
                         </div>
                         <div>
                             <label for="description"><strong>Description:</strong></label> <br>
-                            <input type="text" size=40 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
+                            <input type="text" size=30 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
                         </div>
                         <div>
                             <label for="qty"><strong>Quantity:</strong></label> <br>             
-                            <input type="number" min="0" value="<%= data.qty %>" name="qty" id="qty" required /> 
+                            <input type="number" min="0" value="<%= data.qty %>" name="qty" id="qty" required />  
                         </div>
                         <input type="submit" class="btn btn-secondary my-2" value="Update Product" />
                     </form>
@@ -36,38 +37,14 @@
 
                 <div id="ingredients" class="tabcontent shadow-lg">
                     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Base Ingredients</h3>
-                    <p>Choose your base ingredients for the dish</p>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
-                        <p><%= data.ingredients[0] %>: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                </div>
-                  
-                <div id="quantity" class="tabcontent shadow-lg">
-                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Quantity</h3>
-                    <p>Choose your quantity for the dish</p> 
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
-                    <div class="slidecontainer mt-3">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                        <p>Value: <span id="demo"></span></p>
-                    </div>
+                    <h3>Main Ingredients</h3>
+                    <p>Number of servings for the main ingredients</p>
+                    <% for (let i=0;i< 5; i++){ %>
+                        <div class="slidecontainer mt-3">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
+                            <p><%= data.ingredients[i] %>: <span id="demo"></span></p>
+                        </div>
+                        <%} %>
                 </div>
                   
                 <div id="toppings" class="tabcontent shadow-lg">
@@ -87,9 +64,39 @@
                         <p>Value: <span id="demo"></span></p>
                     </div>
                 </div>
+
+                <div id="nutrients" class="tabcontent shadow-lg">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Nutrients</h3>
+                    <p>Choose your quantity for the dish</p> 
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p>Value: <span id="demo"></span></p>
+                    </div>
+                </div>
+
+                <div id="vitamins" class="tabcontent shadow-lg">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Vitamins</h3>
+                    <p>Choose your quantity for the dish</p> 
+                    <% for (let i=0;i< 5; i++){ %>
+                    <div class="slidecontainer mt-3">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p><%= data.ingredients[i] %> <span id="demo"></span></p>
+                    </div>
+                    <%} %>
+                </div>
             </div>
         </div>
-        <a href="/diylifestyle/<%= data.id %>" class="btn btn-warning my-2">Back to Details</a>
+        <a href="/diylifestyle/<%= data.id %>" class="btn btn-warning my-2">BACK</a>
     </div>  
 
     </div>

@@ -12,8 +12,8 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Price: S$<%= Number.parseFloat(data.price).toFixed(2) %></li>
                             <% if (data.qty > 0) { %>
-                                <li class="list-group-item">Quantity Left: <%= data.qty %> </li>                                             
-                                <li class="list-group-item"><a href="#" class="btn btn-secondary">ADD TO MEAL PLAN</a></li>
+                                <li class="list-group-item">Quantity Selected: <%= data.qty %> </li>                                             
+                                <li class="list-group-item">Calories: <%= data.calories %> kcal</li>
                             <% } else { %>
                                 <li class="list-group-item" style="color: red;">Sold Out!</li>  
                             <% } %>
@@ -26,6 +26,7 @@
                     </div>
                 </div>
             </div>
+            <a href="/diylifestyle/index" class="btn btn-warning my-2">BACK</a>
         </div>
         <script type="text/javascript" src="/app.js"></script>
         <script type="text/javascript" src="/navbar.js"></script>

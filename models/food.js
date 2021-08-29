@@ -27,6 +27,7 @@ const foodSchema = new Schema(
       e: String,
     },
     ingredients: [String],
+    toppings: [String],
     // readyToEat: Boolean,
     // scheduled: Boolean,
   },
