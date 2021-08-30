@@ -50,15 +50,15 @@ app.use((req, res, next) => {
 });
 
 // SEEDING
-// app.get("/seeds", async (req, res) => {
-//   try {
-//     // await Food.collection.drop();
-//     // await Food.create(foodSeed);
-//     res.send("Food seeded successfully");
-//   } catch (err) {
-//     console.log("Read Error Message here: ", err);
-//   }
-// });
+app.get("/seeds", async (req, res) => {
+  try {
+    // await Food.collection.drop();
+    await Food.create(foodSeed);
+    res.send("Food seeded successfully");
+  } catch (err) {
+    console.log("Read Error Message here: ", err);
+  }
+});
 
 // GET -- homepage page
 app.get("/", async (req, res) => {
