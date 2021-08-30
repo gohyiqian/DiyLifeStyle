@@ -1,8 +1,35 @@
 <%- include("../partials/header.ejs") %>
 <body class="background">
-    <div class="mainfont" style="color: white;">
-        Design your <br> own Food & <br> Exercise Regime
-    </div>
+    <section class= "title-section" id="title">
+        <p class="mainfont" style="color: white;">
+            Design your <br> own Food & <br> Exercise Regime
+        </p>
+    </section>
+
+    <section class="orange-section" id="features">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="feature-box col-lg-4">
+            <i class="icon fas fa-check-circle fa-6x"></i>
+              <h3 class="feature-title">Convenient & Easy to use</h3>
+              <p>So easy to use, even your mum will love it!</p>
+            </div>
+    
+            <div class="feature-box col-lg-4">
+              <i class="icon fas fa-bullseye fa-6x"></i>
+              <h3 class="feature-title">Achieve Your Goals</h3>
+              <p>Let us help you achieve your healthy goals!</p>
+            </div>
+    
+            <div class="feature-box col-lg-4">
+              <i class="icon fas fa-heart fa-6x"></i>
+              <h3 class="feature-title">Create your Favourite Meal</h3>
+              <p>Design your favourite dishes and share with your friends</p>
+            </div>
+          </div>
+        </div>
+    </section>
+    <%- include("../partials/footer.ejs") %>
     <script type="text/javascript" src="/navbar.js"></script>
 </body>
 </html>

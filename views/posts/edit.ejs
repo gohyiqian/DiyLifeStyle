@@ -1,5 +1,5 @@
 <%- include("../partials/header.ejs") %>
-<body class="orangeBackground">
+<body class="orange-background">
     <div class="container countertop">
         <div class="row">
             <div class="col">
@@ -25,12 +25,12 @@
                             <input type="text" name="name" id="name" placeholder="anything creative" value="<%=data.name%>" required /> <br><br>
                         </div>
                         <div>
-                            <label for="description"><strong>Description:</strong></label> <br>
-                            <input type="text" size=30 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
-                        </div>
-                        <div>
                             <label for="qty"><strong>Quantity:</strong></label> <br>             
                             <input type="number" min="0" value="<%= data.qty %>" name="qty" id="qty" required />  
+                        </div>
+                        <div>
+                            <label for="description"><strong>Description:</strong></label> <br>
+                            <input type="text" size=30 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
                         </div>
                         <input type="submit" class="btn btn-secondary my-2" value="Update Product" />
                     </form>
