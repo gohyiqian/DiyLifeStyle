@@ -9,6 +9,10 @@ body {
   justify-content: center;
 }
 
+p {
+  color: #8f8f8f;
+}
+
 .container-fluid {
   padding: 5% 10%;
 }
@@ -46,7 +50,7 @@ body {
   background-color: #fff;
 }
 
-/* SECTION - Feature & Icon */
+/* Feature & Icon Section */
 
 #features {
   position: relative;
@@ -57,7 +61,7 @@ body {
 }
 
 .feature-box {
-  padding: 10%;
+  padding: 5%;
 }
 
 .icon {
@@ -65,8 +69,27 @@ body {
   margin-bottom: 1rem;
 }
 
-.icon:hover {
+.icon:hover,
+.card-header:hover {
   color: #ff8800;
+}
+
+.illustrate-words {
+  padding-top: 150px;
+}
+/* Pricing Section */
+
+#pricing {
+  padding: 130px;
+}
+
+.price-text {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.pricing-column {
+  padding: 3% 3%;
 }
 
 .list-group {
@@ -98,6 +121,11 @@ body {
 .nav-link:hover {
   font-weight: bold;
 }
+
+.bt {
+  border-radius: 50%;
+}
+
 .btn:hover {
   font-weight: bold;
 }
@@ -238,10 +266,22 @@ td:last-child {
   cursor: pointer;
 }
 
+/* Cards */
+
 .card {
   border-radius: 25px;
-  border: 3px solid #feac1e;
+  border: 1.5px solid #feac1e;
   background-color: #f1f1f1;
+}
+
+.card-body {
+  background-color: #fff;
+  border-radius: 25px;
+}
+
+.card-header {
+  border-radius: 25px;
+  background-color: transparent;
 }
 
 .animating:hover {

@@ -169,7 +169,6 @@ const server = app.listen(process.env.PORT, () => {
 // GRACEFUL SHUTDOWN
 process.on("SIGTERM", () => {
   console.log("Process is exiting...");
-
   server.close(() => {
     db.close();
   });
