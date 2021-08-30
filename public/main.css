@@ -58,6 +58,7 @@ p {
 
 .feature-title {
   font-size: 1.5rem;
+  color: #585858;
 }
 
 .feature-box {
@@ -156,16 +157,16 @@ th,
 td {
   padding: 2px 20px;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid #585858;
 }
 th:first-child,
 td:first-child {
-  border: 1px solid black;
+  border: 1px solid #585858;
   padding-left: 5;
 }
 th:last-child,
 td:last-child {
-  border: 1px solid black;
+  border: 1px solid #585858;
   padding-right: 5;
 }
 
@@ -284,6 +285,21 @@ td:last-child {
   background-color: transparent;
 }
 
+.testimonial-text {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: #585858;
+}
+
+.testimonial-image {
+  border-radius: 50%;
+}
+
+/* Footer */
+.social-icon {
+  padding-left: 10px;
+}
 .animating:hover {
   animation: animating 2s;
 }
