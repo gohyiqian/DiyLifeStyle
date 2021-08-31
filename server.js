@@ -36,12 +36,6 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// ROUTER
-app.use(homepageController);
-app.use("/diylifestyle", postsController);
-app.use(seedController);
-app.use("/users", userController);
-
 // USER LOGIN
 app.use(
   session({
@@ -55,6 +49,12 @@ app.use((req, res, next) => {
   res.locals.username = req.session.username;
   next();
 });
+
+// ROUTER
+app.use(homepageController);
+app.use("/diylifestyle", postsController);
+app.use(seedController);
+app.use("/users", userController);
 
 // 404 MESSAGE
 app.use("*", (req, res) => {

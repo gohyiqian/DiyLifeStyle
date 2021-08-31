@@ -23,29 +23,35 @@
                         <img src="/images/diylifestyle_logo.png" alt="">
                       </a>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="/#about">About</a>
                     </li>
                     <li class="nav-item">                      
-                        <a class="nav-link " href="#testimonials">Hear More</a>
+                        <a class="nav-link " href="/#testimonials">Hear More</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
+                        <a class="nav-link" href="/#features">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#pricing">Pricing</a>
+                        <a class="nav-link" href="/#pricing">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="/#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#faq">FAQ</a>
+                        <a class="nav-link" href="/#faq">FAQ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-secondary my-1" href="/diylifestyle/login" style="color: white;">LOGIN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-warning my-1" href="/diylifestyle/signup">SIGN UP</a>
-                    </li>
+                    <% if (username) { %>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary my-1" href="/users/logout" style="color: white;">LOG OUT</a>
+                        </li>
+                      <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary my-1" href="/diylifestyle/login" style="color: white;">LOGIN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-warning my-1" href="/diylifestyle/signup">SIGN UP</a>
+                        </li>
+                      <% } %>
                 </ul>
             </div>
         </div>

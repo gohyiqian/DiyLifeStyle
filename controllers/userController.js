@@ -35,14 +35,13 @@ controller.post("/login", async (req, res) => {
   const selectedUser = await User.findOne({
     username: req.body.username,
   });
-
   if (!selectedUser) {
     return res.send("Username does not exist");
   }
 
   if (bcrypt.compareSync(req.body.password, selectedUser.password)) {
     req.session.username = selectedUser.username;
-    res.redirect("/");
+    res.redirect("/diylifestyle/index");
   } else {
     res.send("Wrong password!");
   }
@@ -52,6 +51,11 @@ controller.post("/login", async (req, res) => {
 controller.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/?logout=true");
+  // const logout = req.query.logout;
+  // console.log(logout);
+  // res.render("users/login.ejs", {
+  //   logout,
+  // });
 });
 
 module.exports = controller;
