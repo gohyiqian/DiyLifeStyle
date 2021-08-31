@@ -30,6 +30,10 @@ Design is first conceived on Figma. Prototypes as show below:
 
 ![Login Image](/public/images/loginpage.jpg)
 
+## Features
+
+![Dashboard Image](/public/images/features.jpg)
+
 ## User Dashboard
 
 ![Dashboard Image](/public/images/indexpage.jpg)
