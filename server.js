@@ -1,26 +1,21 @@
 // DEPENDENCIES
 const express = require("express");
-const bcrypt = require("bcrypt");
 const app = express();
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const session = require("express-session");
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 
-// CONGFIG
-const mongoURI = process.env.MONGO_URI;
-const db = mongoose.connection;
-
-// Controllers
+// CONTROLLERS
 const homepageController = require("./controllers/homepageController");
 const postsController = require("./controllers/postsController");
 const seedController = require("./controllers/seedController");
 const userController = require("./controllers/userController");
 
-// MODELS
-const foodSeed = require("./models/seeds");
-const Food = require("./models/food");
-const User = require("./models/users");
+// CONGFIG
+const mongoURI = process.env.MONGO_URI;
+const db = mongoose.connection;
 
 // CONNECT TO MONGODB
 mongoose.connect(
@@ -40,8 +35,12 @@ db.on("disconnected", () => console.log("My database is disconnected"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+// ROUTER
 app.use(homepageController);
 app.use("/diylifestyle", postsController);
+app.use(seedController);
+app.use("/users", userController);
 
 // USER LOGIN
 app.use(
@@ -57,35 +56,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/users/signup", async (req, res) => {
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    await User.create({
-      username: req.body.username,
-      password: hashedPassword,
-    });
-    res.send("Ok, your account has been created.");
-  } catch (err) {
-    res.send(`Unable to create a new account: ${err.message}`);
-  }
-});
-
-// GET - login
-app.get("/login", (req, res) => {
-  if (!req.session.username) {
-    res.render("users/login.ejs");
-  } else {
-    res.redirect("/");
-  }
-});
-
-// DELETE
-app.delete("/diylifestyle/:id", async (req, res) => {
-  await Food.deleteOne({ _id: req.params.id });
-  res.redirect("/diylifestyle/index/?success=true&action=delete");
-});
-
+// 404 MESSAGE
 app.use("*", (req, res) => {
   res.status(404);
   res.send("Page is not found");

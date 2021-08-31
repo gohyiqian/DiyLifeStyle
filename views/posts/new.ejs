@@ -1,31 +1,31 @@
 <%- include("../partials/header.ejs") %>
-<body>
+<body class="orange-background">
     <div class="container">
         <div class="row">
             <div class="col">   
                 <form action="/diylifestyle" method="POST">
                     <div>
-                        <label for="name"><strong>Name:</strong></label> <br>
+                        <label for="name"><strong>Name:</strong></label>
                         <input type="text" name="name" id="name" placeholder="anything creative" required /> <br><br>
                     </div>
                     <div>
-                        <label for="description"><strong>Description:</strong></label> <br>
+                        <label for="description"><strong>Description:</strong></label>
                         <input type="text" size=50 height=20 name="description" id="description" placeholder="anything creative" required/> <br><br>
                     </div>
                     <div>
-                        <label for="img"><strong>Image:</strong></label> <br>            
+                        <label for="img"><strong>Image:</strong></label>           
                         <input type="text" name="img" id="img" placeholder="Insert image URL" height="250px"/>  <br><br>
                     </div>
                     <div>
-                        <label for="price"><strong>Price:</strong></label> <br>             
+                        <label for="price"><strong>Price:</strong></label>              
                         <input type="number" min="0" name="price" id="price" placeholder="1" required /> <br><br>
                     </div>
                     <div>
-                        <label for="qty"><strong>Quantity:</strong></label> <br>             
+                        <label for="qty"><strong>Quantity:</strong></label>            
                         <input type="number" min="0" name="qty" id="qty" placeholder="10" required /> <br><br>
                     </div>
                     <div>
-                        <label for="calories"><strong>Calories:</strong></label> <br>             
+                        <label for="calories"><strong>Calories:</strong></label>             
                         <input type="number" min="0" name="calories" id="calories" placeholder="100" required /> <br><br>
                     </div>
                     <input type="submit" class="btn btn-secondary my-2" value="Add New Dish" />
