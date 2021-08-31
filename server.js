@@ -11,10 +11,16 @@ require("dotenv").config();
 const mongoURI = process.env.MONGO_URI;
 const db = mongoose.connection;
 
+// Controllers
+const homepageController = require("./controllers/homepageController");
+const postsController = require("./controllers/postsController");
+const seedController = require("./controllers/seedController");
+const userController = require("./controllers/userController");
+
 // MODELS
-const foodSeed = require("./models/seeds.js");
-const Food = require("./models/food.js");
-const User = require("./models/users.js");
+const foodSeed = require("./models/seeds");
+const Food = require("./models/food");
+const User = require("./models/users");
 
 // CONNECT TO MONGODB
 mongoose.connect(
@@ -34,6 +40,8 @@ db.on("disconnected", () => console.log("My database is disconnected"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(homepageController);
+app.use("/diylifestyle", postsController);
 
 // USER LOGIN
 app.use(
@@ -49,32 +57,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// SEEDING
-app.get("/seeds", async (req, res) => {
-  try {
-    // await Food.collection.drop();
-    await Food.create(foodSeed);
-    res.send("Food seeded successfully");
-  } catch (err) {
-    console.log("Read Error Message here: ", err);
-  }
-});
-
-// GET -- homepage page
-app.get("/", async (req, res) => {
-  res.render("posts/homepage.ejs");
-});
-
-// GET - login.ejs
-app.get("/diylifestyle/login", (req, res) => {
-  res.render("users/login.ejs");
-});
-
-// GET - signup.ejs
-app.get("/diylifestyle/signup", (req, res) => {
-  res.render("users/signup.ejs");
-});
-
 app.post("/users/signup", async (req, res) => {
   try {
     const salt = await bcrypt.genSalt(10);
@@ -87,58 +69,6 @@ app.post("/users/signup", async (req, res) => {
   } catch (err) {
     res.send(`Unable to create a new account: ${err.message}`);
   }
-});
-
-// GET -- index page (Page with all items)
-app.get("/diylifestyle/index", async (req, res) => {
-  const results = await Food.find();
-  // Get query parameters success and action
-  // If have, we display alert banners
-  // If not, no alert banners should be displayed
-  const success = req.query.success;
-  const action = req.query.action;
-  res.render("posts/index.ejs", {
-    data: results,
-    success,
-    action,
-  });
-});
-
-// NEW -- new.ejs
-app.get("/diylifestyle/new", (req, res) => {
-  res.render("posts/new.ejs");
-});
-
-// POST - add new items
-app.post("/diylifestyle", async (req, res) => {
-  console.log(req.body);
-  await Food.create(req.body);
-  res.redirect("/diylifestyle/index?success=true&action=create");
-});
-
-// SHOW -- show.ejs
-app.get("/diylifestyle/:id", async (req, res) => {
-  const item = await Food.findById(req.params.id);
-  const success = req.query.success;
-  const action = req.query.action;
-  res.render("posts/show.ejs", {
-    data: item,
-    success,
-    action,
-  });
-});
-
-// EDIT -- edit.ejs
-app.get("/diylifestyle/:id/edit", async (req, res) => {
-  const item = await Food.findById(req.params.id);
-  res.render("posts/edit.ejs", { data: item });
-});
-
-// PUT -- for editing
-app.put("/diylifestyle/:id", async (req, res) => {
-  await Food.updateOne({ _id: req.params.id }, req.body);
-  console.log(req.body);
-  res.redirect(`/diylifestyle/${req.params.id}?success=true&action=update`);
 });
 
 // GET - login

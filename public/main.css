@@ -234,6 +234,11 @@ td:last-child {
   color: #feac1e;
 }
 
+textarea {
+  width: 300px;
+  height: 100px;
+}
+
 /* Style the close button */
 .topright {
   float: right;
