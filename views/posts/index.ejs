@@ -10,7 +10,7 @@
                     <div class="card shadow-lg mb-3" style="height: 33rem;">
                         <div class="card-body">
                             <a href="/diylifestyle/<%= ele.id %>"><img src="<%= ele.img %>" alt="diylifestyle" height="245px"/></a>
-                            <h5 class="card-title"><a href="/diylifestyle/<%= ele.id %>"><%= ele.name %></h5></a>
+                            <h5 class="card-title"><a href="/diylifestyle/<%= ele.id %>" style="text-decoration: none;"><%= ele.name %></h5></a>
                             <ul class="list-group list-group-flush shadow-lg">
                                 <li class="list-group-item">Price: S$<%= Number.parseFloat(ele.price).toFixed(2) %></li>
                                 <% if (ele.qty > 0) { %>

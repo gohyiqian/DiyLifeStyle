@@ -30,7 +30,7 @@
                         </div>
                         <div>
                             <label for="description"><strong>Description:</strong></label> <br>
-                            <input type="text" size=30 name="description" id="description" placeholder="anything creative" value="<%=data.description%>" required/> <br><br>
+                            <textarea id="description" name="description" placeholder="<%=data.description%>" style="height:80px" value="<%=data.description%>" required></textarea><br><br>
                         </div>
                         <input type="submit" class="btn btn-secondary my-2" value="Update Product" />
                     </form>
