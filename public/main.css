@@ -1,3 +1,4 @@
+/* GENERAL */
 body {
   /* display: flex; */
   -webkit-box-align: center;
@@ -17,18 +18,16 @@ p {
   letter-spacing: -0.02em;
 }
 
+textarea {
+  width: 300px;
+  height: 100px;
+}
+
 .container-fluid {
   padding: 5% 10%;
 }
 
-/* SECTIONS */
-.title-section {
-  background-image: url(images/background.jpg);
-  background-size: cover;
-  color: #fff;
-  text-align: left;
-}
-
+/* HOMEPAGE */
 .mainfont {
   padding-top: 400px;
   padding-bottom: 50px;
@@ -41,12 +40,21 @@ p {
   line-height: 1.1em;
 }
 
+/* SECTIONS */
+.title-section {
+  background-image: url(images/background.jpg);
+  background-size: cover;
+  color: #fff;
+  text-align: left;
+}
+
 .orange-section {
   background-color: #ffe5b8;
 }
 
 .orange-background {
   background-color: #ffe5b8;
+  /* background: linear-gradient(0deg, #ff8800, #ffe5b8, #ff8800, #ffe5b8); */
   margin-top: 100px;
 }
 
@@ -54,20 +62,19 @@ p {
   background-color: #fff;
 }
 
-/* Feature & Icon Section */
+/* FEATURES & ICON SECTION */
 
 #features {
   position: relative;
 }
 
 .feature-title {
-  font-size: 1.5rem;
   color: #353535;
   font-size: 35px;
 }
 
 .feature-box {
-  padding: 5%;
+  padding: 1% 5%;
 }
 
 .icon {
@@ -83,8 +90,8 @@ p {
 .illustrate-words {
   padding-top: 150px;
 }
-/* Pricing Section */
 
+/* PRICING SECTION */
 #pricing {
   padding: 120px;
 }
@@ -98,6 +105,7 @@ p {
   padding: 3% 1.5%;
 }
 
+/* CONTACT SECTION */
 .contact-form {
   padding: 3% 10%;
   border-radius: 5px;
@@ -124,7 +132,6 @@ p {
 }
 
 /* NAVIGATION TAB */
-
 .nav-item {
   font-size: 0.8em;
   padding-left: 10px;
@@ -141,6 +148,15 @@ p {
 
 .btn:hover {
   font-weight: bold;
+  animation-name: background-color;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+@keyframes background-color {
+  100% {
+    background-color: #feac1e;
+    opacity: 0.8;
+  }
 }
 
 .navbar-collapse {
@@ -160,7 +176,7 @@ p {
   margin-left: 350px;
 }
 
-/* Table styling */
+/* TABLE */
 table {
   margin: auto;
 }
@@ -171,18 +187,20 @@ td {
   text-align: center;
   border: 1px solid #585858;
 }
+
 th:first-child,
 td:first-child {
   border: 1px solid #585858;
   padding-left: 5;
 }
+
 th:last-child,
 td:last-child {
   border: 1px solid #585858;
   padding-right: 5;
 }
 
-/* Slider Tab Styling */
+/* SLIDER TAB */
 .slidecontainer {
   width: 80%;
   margin: auto;
@@ -196,7 +214,7 @@ td:last-child {
   border-top-left-radius: 20px;
 }
 
-/* Style the buttons inside the tab */
+/* TAB BUTTONS */
 .tab button {
   background-color: #e7e7e7;
   float: left;
@@ -227,16 +245,12 @@ td:last-child {
   background-color: #ffff;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
+  text-transform: capitalize;
 }
 
 .tab button:hover {
   font-weight: bold;
   color: #feac1e;
-}
-
-textarea {
-  width: 300px;
-  height: 100px;
 }
 
 /* Style the close button */
@@ -284,7 +298,7 @@ textarea {
   cursor: pointer;
 }
 
-/* Cards */
+/* CARDS */
 .card {
   border-radius: 20px;
   border: 1.5px solid #feac1e;
@@ -305,9 +319,9 @@ textarea {
 
 .card:hover,
 .card-body:hover {
-  -moz-box-shadow: 0 0 10px rgb(87, 87, 87);
+  -moz-box-shadow: 10 10 10px rgb(87, 87, 87);
   -webkit-box-shadow: 0 0 10px rgb(87, 87, 87);
-  box-shadow: 0 0 10px rgb(87, 87, 87);
+  box-shadow: 10 10 50px rgb(87, 87, 87);
 }
 
 .card-header {
@@ -315,7 +329,7 @@ textarea {
   background-color: transparent;
 }
 
-/* Testimonial */
+/* TESTIMONIAL */
 .testimonial-text {
   font-size: 1.5rem;
   line-height: 1.5;
@@ -387,12 +401,12 @@ textarea {
   line-height: 1.5;
   letter-spacing: -0.25px;
 }
-/* Footer */
+/* FOOTER */
 .social-icon {
   padding-left: 10px;
 }
 
-/* Animation */
+/* ANIMATION */
 .animating:hover {
   animation: animating 2s;
 }
@@ -474,12 +488,30 @@ img:hover {
     height: 350px;
     width: 350px;
   }
+  p {
+    color: #8f8f8f;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
   .mainfont {
     padding-top: 200px;
     margin-right: 120px;
     margin-left: 25px;
     font-size: 3.5rem;
   }
+
+  .illustrate-words {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .feature-title {
+    color: #353535;
+    font-size: 28px;
+  }
+
   #pricing {
     padding: 60px;
   }

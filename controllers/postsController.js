@@ -36,7 +36,7 @@ controller.get("/new", (req, res) => {
 controller.post("", async (req, res) => {
   console.log(req.body);
   await Food.create(req.body);
-  res.redirect("/index?success=true&action=create");
+  res.redirect("diylifestyle/index?success=true&action=create");
 });
 
 // SHOW -- show.ejs
@@ -61,13 +61,13 @@ controller.get("/:id/edit", async (req, res) => {
 controller.put("/:id", async (req, res) => {
   await Food.updateOne({ _id: req.params.id }, req.body);
   console.log(req.body);
-  res.redirect(`diyLifeStyle/${req.params.id}?success=true&action=update`);
+  res.redirect(`${req.params.id}?success=true&action=update`);
 });
 
 // DELETE
 controller.delete("/:id", async (req, res) => {
   await Food.deleteOne({ _id: req.params.id });
-  res.redirect("/diylifestyle/index/?success=true&action=delete");
+  res.redirect("index/?success=true&action=delete");
 });
 
 module.exports = controller;
