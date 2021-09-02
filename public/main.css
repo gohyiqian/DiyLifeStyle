@@ -53,8 +53,8 @@ textarea {
 }
 
 .orange-background {
-  background-color: #ffe5b8;
-  /* background: linear-gradient(0deg, #ff8800, #ffe5b8, #ff8800, #ffe5b8); */
+  /* background-color: #ffe5b8; */
+  background: linear-gradient(30deg, #ecc4ff, #ffcb7d, #fde7fb, #ffda9a);
   margin-top: 100px;
 }
 
@@ -301,7 +301,7 @@ td:last-child {
 /* CARDS */
 .card {
   border-radius: 20px;
-  border: 1.5px solid #feac1e;
+  border: 0px solid #feac1e;
   background-color: #f1f1f1;
 }
 
@@ -319,9 +319,9 @@ td:last-child {
 
 .card:hover,
 .card-body:hover {
-  -moz-box-shadow: 10 10 10px rgb(87, 87, 87);
-  -webkit-box-shadow: 0 0 10px rgb(87, 87, 87);
-  box-shadow: 10 10 50px rgb(87, 87, 87);
+  -moz-box-shadow: 10 50 10px #feac1e;
+  -webkit-box-shadow: 0 0 20px #feac1e;
+  box-shadow: 10 10 50px #feac1e;
 }
 
 .card-header {
