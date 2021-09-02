@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../models/users");
 const bcrypt = require("bcrypt");
 const controller = express.Router();
+const session = require("express-session");
 
 // USER SIGN UP
 controller.get("/signup", (req, res) => {
@@ -49,7 +50,8 @@ controller.post("/login", async (req, res) => {
 
 // DESTROY SESSION
 controller.get("/logout", (req, res) => {
-  req.session.destroy();
+  // req.session.destroy(); // if using express-session
+  req.session = null; // if using cookie-session
   res.redirect("/?logout=true");
   // const logout = req.query.logout;
   // console.log(logout);
