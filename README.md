@@ -12,14 +12,15 @@ This project imagines a health and lifestyle product that lets user take charge 
 
 Design is first conceived on Figma. Prototypes as show below:
 
-![Figma Image](/public/images/figma.jpg)
+![Figma Image](/public/images/figma_prototyping.jpg)
 
 ## Built with
 
 - HTML/CSS/JavaScript
-- [Express](https://expressjs.com/) - Web Framework for Node.js
-- [Passport](http://www.passportjs.org/) - Authentication Middleware for Node.js
 - [NodeJS](https://nodejs.org/en/) - Server-side JavaScript
+- [express](https://expressjs.com/) - Create a server and accept requests
+- [passport](http://www.passportjs.org/) - For Request Authentication
+- [express-session](https://www.npmjs.com/package/express-session) - For storing server-side data
 - [MongoDB](https://www.mongodb.com/) - No-Relational Database
 - [Heroku](https://www.heroku.com) - PaaS Cloud Platform
 
@@ -46,3 +47,25 @@ Design is first conceived on Figma. Prototypes as show below:
 ## Edit Page
 
 ![Detail Image](/public/images/editpage.jpg)
+
+## Learning Points
+
+### Sessions
+
+In a typical web application, the credentials used to authenticate a user will only be transmitted during the login request. If authentication succeeds, a session will be established and maintained via a cookie set in the user's browser.
+
+Each subsequent request will not contain credentials, but rather the unique cookie that identifies the session. In order to support login sessions, Passport will serialize and deserialize user instances to and from the session.
+
+### OAuth
+
+```
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"], // Used to specify the required data
+  })
+);
+
+```
+
+'Scope' specifies which user's Google information that you want your app to get access to. Refer [here](https://developers.google.com/identity/protocols/oauth2/scopes) for the complete list of scopes.

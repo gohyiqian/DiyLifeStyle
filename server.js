@@ -9,6 +9,7 @@ const passport = require("passport");
 // const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const cookieSession = require("cookie-session");
+const flash = require("connect-flash");
 require("dotenv").config();
 
 // MODELS
@@ -53,13 +54,14 @@ app.use(
 
 app.use(passport.initialize()); // Used to initialize passport
 app.use(passport.session()); // Used to persist login sessions
+app.use(flash()); // flash messages
 
-// Used to stuff a piece of information into a cookie
+// To stuff a piece of information into a cookie
 passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-// Used to decode the received cookie and persist session
+// To decode the received cookie and persist session
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
@@ -67,6 +69,7 @@ passport.deserializeUser((user, done) => {
 // Middleware to check if the user is authenticated
 function isUserAuthenticated(req, res, next) {
   if (req.user) {
+    console.log(req.user);
     next();
   } else {
     res.send("You must login!");
@@ -81,13 +84,35 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:3000/auth/google/callback",
     },
+    // Passport callback function
+    // (accessToken, refreshToken, profile, done) => {
+    //   console.log(profile);
+    //   done(null, profile); // passes the profile data to serializeUser
+    // }
+
     (accessToken, refreshToken, profile, done) => {
-      done(null, profile); // passes the profile data to serializeUser
+      // passport callback function
+      //check if user already exists in our db with the given profile ID
+      User.findOne({ googleId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          //if we already have a record with the given profile ID
+          done(null, currentUser);
+        } else {
+          //if not, create a new user
+          new User({
+            googleId: profile.id,
+          })
+            .save()
+            .then((username) => {
+              done(null, username);
+            });
+        }
+      });
     }
   )
 );
 
-// GET /auth/google
+// GET: /auth/google
 // passport.authenticate middleware is used here to authenticate the request
 app.get(
   "/auth/google",
@@ -96,17 +121,17 @@ app.get(
   })
 );
 
-// GET /auth/google/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the index page.
+// GET: /auth/google/callback
+// If authentication fails, the user  be redirected back to login page.
+// If authentication succeeds, the user  be redirected back to index page.
 app.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "diylifestyle/login" }),
-  (req, res) => {
-    res.redirect("/diylifestyle/index");
-  }
+  passport.authenticate("google", {
+    successRedirect: "/diylifestyle/index",
+    failureRedirect: "diylifestyle/login",
+    failureFlash: true,
+    successFlash: true,
+  })
 );
 
 // USER LOGIN
@@ -115,6 +140,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // One day in milliseconds
   })
 );
 
