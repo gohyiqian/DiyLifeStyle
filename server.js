@@ -6,10 +6,13 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+// const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const cookieSession = require("cookie-session");
-
 require("dotenv").config();
+
+// MODELS
+const User = require("./models/users");
 
 // CONTROLLERS
 const homepageController = require("./controllers/homepageController");
@@ -20,53 +23,6 @@ const userController = require("./controllers/userController");
 // CONGFIG
 const mongoURI = process.env.MONGO_URI;
 const db = mongoose.connection;
-
-// Models
-const User = require("./models/users");
-
-// cookieSession config
-app.use(
-  cookieSession({
-    maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
-    keys: ["randomstringhere"],
-  })
-);
-
-app.use(passport.initialize()); // Used to initialize passport
-app.use(passport.session()); // Used to persist login sessions
-
-// Strategy config
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/callback",
-    },
-    (accessToken, refreshToken, profile, done) => {
-      done(null, profile); // passes the profile data to serializeUser
-    }
-  )
-);
-
-// Used to stuff a piece of information into a cookie
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-// Used to decode the received cookie and persist session
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
-
-// Middleware to check if the user is authenticated
-function isUserAuthenticated(req, res, next) {
-  if (req.user) {
-    next();
-  } else {
-    res.send("You must login!");
-  }
-}
 
 // CONNECT TO MONGODB
 mongoose.connect(
@@ -87,12 +43,56 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+// cookieSession config
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
+    keys: ["randomstringhere"],
+  })
+);
+
+app.use(passport.initialize()); // Used to initialize passport
+app.use(passport.session()); // Used to persist login sessions
+
+// Used to stuff a piece of information into a cookie
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+// Used to decode the received cookie and persist session
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+// Middleware to check if the user is authenticated
+function isUserAuthenticated(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.send("You must login!");
+  }
+}
+
+// Strategy config
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      done(null, profile); // passes the profile data to serializeUser
+    }
+  )
+);
+
 // GET /auth/google
 // passport.authenticate middleware is used here to authenticate the request
 app.get(
   "/auth/google",
   passport.authenticate("google", {
-    scope: ["https://www.googleapis.com/auth/userinfo.email"], // Used to specify the required data
+    scope: ["profile", "email"], // Used to specify the required data
   })
 );
 

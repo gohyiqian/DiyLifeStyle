@@ -18,6 +18,7 @@ Design is first conceived on Figma. Prototypes as show below:
 
 - HTML/CSS/JavaScript
 - [Express](https://expressjs.com/) - Web Framework for Node.js
+- [Passport](http://www.passportjs.org/) - Authentication Middleware for Node.js
 - [NodeJS](https://nodejs.org/en/) - Server-side JavaScript
 - [MongoDB](https://www.mongodb.com/) - No-Relational Database
 - [Heroku](https://www.heroku.com) - PaaS Cloud Platform
