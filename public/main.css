@@ -436,6 +436,20 @@ td:last-child {
   color: white;
 }
 
+.fa-user {
+  color: #feac1e;
+  background: transparent;
+}
+
+.googleProfile {
+  border-radius: 50%;
+  border: 5px solid #feac1e;
+}
+
+.jumbotron {
+  border: 5px solid #feac1e;
+}
+
 /* FOOTER */
 .social-icon {
   padding-left: 10px;

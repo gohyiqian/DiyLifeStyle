@@ -67,14 +67,29 @@ passport.deserializeUser((user, done) => {
 });
 
 // Middleware to check if the user is authenticated
-function isUserAuthenticated(req, res, next) {
-  if (req.user) {
-    console.log(req.user);
-    next();
-  } else {
-    res.send("You must login!");
-  }
-}
+// function isUserAuthenticated(req, res, next) {
+//   if (req.user) {
+//     console.log(req.user);
+//     next();
+//   } else {
+//     res.send("You must login!");
+//   }
+// }
+
+// Middleware - Check user is Logged in
+const checkUserLoggedIn = (req, res, next) => {
+  req.user ? next() : res.sendStatus(401);
+};
+
+//Protected Route.
+app.get("/profile", checkUserLoggedIn, (req, res) => {
+  // res.send(`<h1>${req.user.displayName}'s Profile Page</h1>`);
+  res.render("users/success.ejs", { user: req.user });
+});
+
+// app.get("/success", (req, res) =>
+//   res.render("users/success.ejs", { user: profile })
+// );
 
 // Strategy config
 passport.use(
@@ -85,29 +100,9 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/google/callback",
     },
     // Passport callback function
-    // (accessToken, refreshToken, profile, done) => {
-    //   console.log(profile);
-    //   done(null, profile); // passes the profile data to serializeUser
-    // }
-
     (accessToken, refreshToken, profile, done) => {
-      // passport callback function
-      //check if user already exists in our db with the given profile ID
-      User.findOne({ googleId: profile.id }).then((currentUser) => {
-        if (currentUser) {
-          //if we already have a record with the given profile ID
-          done(null, currentUser);
-        } else {
-          //if not, create a new user
-          new User({
-            googleId: profile.id,
-          })
-            .save()
-            .then((username) => {
-              done(null, username);
-            });
-        }
-      });
+      console.log(profile);
+      done(null, profile); // passes the profile data to serializeUser
     }
   )
 );
@@ -127,12 +122,19 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/diylifestyle/index",
+    successRedirect: "/profile",
     failureRedirect: "diylifestyle/login",
     failureFlash: true,
     successFlash: true,
   })
 );
+
+//Logout
+app.get("/logout", (req, res) => {
+  req.session = null;
+  req.logout();
+  res.redirect("/");
+});
 
 // USER LOGIN
 app.use(

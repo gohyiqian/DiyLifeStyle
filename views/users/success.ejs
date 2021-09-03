@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Google SignedIn</title>
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- load fontawesome -->
+      <style>
+          body{ padding-top:40px; }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <div style="text-align: center;"><img src="/images/diylifestyle_logo.png"  alt="logo"></div>
+        <hr class="my-4">
+        <h1 class="text-center display-4">Welcome Back!  <span class="fa fa-user"></span> <%= user.displayName %></h1>
+        <div class="py-2" style="text-align: center;"><img class="googleProfile" src=<%= user.photos[0].value %> width=150px alt="Google Profile Pic"></div>
+          <p class="text-center">Are you ready to create more awesome meal designs?</p>
+          <p class="text-center">
+              <strong>Id</strong>: <%= user.id %><br>
+              <strong>Email</strong>: <%= user.emails[0].value %><br>
+              <strong>Name</strong>: <%= user.displayName %>
+          </p>
+        <div style="text-align: center;">
+          <a href="/diylifestyle/index" style="text-align: center;"class="btn btn-secondary my-2">GO TO YOUR ACCOUNT</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html> 
