@@ -610,11 +610,11 @@ img:hover {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 400px) {
   .card {
     height: 30rem;
   }
   .navbar-toggler {
-    margin-left: 300px;
+    margin-left: 320px;
   }
 }
