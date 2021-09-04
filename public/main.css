@@ -174,7 +174,7 @@ textarea {
   background-color: transparent;
   border: 2px solid transparent;
   border-radius: 0.25rem;
-  margin-left: 350px;
+  margin-left: 400px;
 }
 
 /* TABLE */
@@ -563,7 +563,7 @@ img:hover {
 
 @media (max-width: 990px) {
   .card {
-    height: 28rem;
+    height: 26rem;
   }
 }
 
@@ -607,5 +607,14 @@ img:hover {
 
   #pricing {
     padding: 60px;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    height: 30rem;
+  }
+  .navbar-toggler {
+    margin-left: 300px;
   }
 }
