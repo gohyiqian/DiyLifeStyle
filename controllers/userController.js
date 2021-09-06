@@ -1,8 +1,24 @@
 const express = require("express");
 const User = require("../models/users");
+const Food = require("../models/food");
 const bcrypt = require("bcrypt");
 const controller = express.Router();
 const session = require("express-session");
+
+// USER index page (Page with all meal plans)
+controller.get("/index", async (req, res) => {
+  const results = await Food.find();
+  // Get query parameters success and action
+  // If have, we display alert banners
+  // If not, no alert banners should be displayed
+  const success = req.query.success;
+  const action = req.query.action;
+  res.render("users/index.ejs", {
+    data: results,
+    success,
+    action,
+  });
+});
 
 // USER SIGN UP
 controller.get("/signup", (req, res) => {
@@ -42,10 +58,18 @@ controller.post("/login", async (req, res) => {
 
   if (bcrypt.compareSync(req.body.password, selectedUser.password)) {
     req.session.username = selectedUser.username;
-    res.redirect("/diylifestyle/index");
+    res.redirect("/users/index");
   } else {
     res.send("Wrong password!");
   }
+});
+
+// USER CALENDAR
+controller.get("/calendar/:id", async (req, res) => {
+  const item = await Food.findById(req.params.id);
+  res.render("users/calendar.ejs", {
+    data: item,
+  });
 });
 
 // DESTROY SESSION

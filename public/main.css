@@ -1,4 +1,8 @@
 /* GENERAL */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   /* display: flex; */
   -webkit-box-align: center;
@@ -8,6 +12,7 @@ body {
   font-size: 20px;
   -webkit-box-pack: center;
   justify-content: center;
+  cursor: url(images/favicon.ico), auto;
 }
 
 p {
@@ -450,6 +455,12 @@ td:last-child {
   border: 5px solid #feac1e;
 }
 
+.calendar {
+  border-radius: 25px;
+  width: 800px;
+  height: 600px;
+}
+
 /* FOOTER */
 .social-icon {
   padding-left: 10px;
@@ -565,6 +576,10 @@ img:hover {
   .card {
     height: 26rem;
   }
+  .calendar {
+    width: 400px;
+    height: 300px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -616,5 +631,9 @@ img:hover {
   }
   .navbar-toggler {
     margin-left: 320px;
+  }
+  .calendar {
+    width: 280px;
+    height: 300px;
   }
 }

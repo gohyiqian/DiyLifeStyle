@@ -2,7 +2,7 @@ const express = require("express");
 const Food = require("../models/food");
 const controller = express.Router();
 
-// GET -- index page (Page with all items)
+// GET -- user index page (Page with all items)
 controller.get("/index", async (req, res) => {
   const results = await Food.find();
   // Get query parameters success and action
@@ -15,16 +15,6 @@ controller.get("/index", async (req, res) => {
     success,
     action,
   });
-});
-
-// GET - login.ejs
-controller.get("/login", (req, res) => {
-  res.render("users/login.ejs");
-});
-
-// GET - signup.ejs
-controller.get("/signup", (req, res) => {
-  res.render("users/signup.ejs");
 });
 
 // NEW -- new.ejs

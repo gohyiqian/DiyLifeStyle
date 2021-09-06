@@ -21,6 +21,7 @@ Design is first conceived on Figma. Prototypes as show below:
 - [express](https://expressjs.com/) - Create a server and accept requests
 - [passport](http://www.passportjs.org/) - For Request Authentication
 - [express-session](https://www.npmjs.com/package/express-session) - For storing server-side data
+- [BCrypt](https://www.heroku.com) - Hashing algorithm for user login password
 - [MongoDB](https://www.mongodb.com/) - No-Relational Database
 - [Heroku](https://www.heroku.com) - PaaS Cloud Platform
 

@@ -6,11 +6,87 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const { google } = require("googleapis"); // Require oAuth2 from google instance.
+const { OAuth2 } = google.auth;
+
 // const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
 require("dotenv").config();
+
+///////////////////// Google Calendar Test ///////////////////
+// Create a new instance of oAuth and set Client ID & Client Secret
+const oAuth2Client = new OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET
+);
+
+// Call the setCredentials method on our oAuth2Client instance and set refresh token
+oAuth2Client.setCredentials({
+  refresh_token: process.env.REFRESH_TOKEN,
+});
+const calendar = google.calendar({ version: "v3", auth: oAuth2Client }); // Create a new calender instance.
+// Create a new event start date instance for temp uses in calendar.
+// 7 numbers specify year, month, day, hour, minute, second, and millisecond (in that order):
+const eventStartTime = new Date(2021, 8, 14, 8, 30, 0, 0);
+// const eventStartTime = new Date();
+// eventStartTime.setDate(eventStartTime.getDay());
+
+// Create a new event end date instance for temp uses in calendar.
+// 0->Jan, 1->Feb ... 8->Sep
+const eventEndTime = new Date(2021, 8, 15, 10, 30, 0, 0);
+// const eventEndTime = new Date();
+// eventEndTime.setDate(eventEndTime.getDay() + 4);
+// eventEndTime.setMinutes(eventEndTime.getMinutes() + 45);
+
+// Create a dummy event for temp uses in calendar
+const event = {
+  summary: `Arugula & Chickpea Salad`,
+  location: `Singapore Bedok`,
+  description: `Meet with David to talk about the new client project and how to integrate the calendar for booking.`,
+  start: {
+    dateTime: eventStartTime,
+    timeZone: "America/Denver",
+  },
+  end: {
+    dateTime: eventEndTime,
+    timeZone: "America/Denver",
+  },
+  colorId: 6,
+};
+
+// Check if we are busy or have an event on our calendar for the same time.
+calendar.freebusy.query(
+  {
+    resource: {
+      timeMin: eventStartTime,
+      timeMax: eventEndTime,
+      timeZone: "America/Denver",
+      items: [{ id: process.env.GOOGLE_CALENDAR_ID }],
+    },
+  },
+  (err, res) => {
+    // Check for errors in our query and log them if they exist.
+    if (err) return console.error("Free Busy Query Error: ", err);
+
+    calendar.events.insert(
+      {
+        calendarId: process.env.GOOGLE_CALENDAR_ID,
+        resource: event,
+      },
+      (err) => {
+        // Check for errors and log them if they exist.
+        if (err) return console.error("Error Creating Calender Event:", err);
+        // Else log that the event was created.
+        return console.log("Calendar event successfully created.");
+      }
+    );
+    return console.log("Sorry Not Free");
+  }
+);
+
+///////////////////// Google Calendar Test  ///////////////////
 
 // MODELS
 const User = require("./models/users");
@@ -67,14 +143,15 @@ passport.deserializeUser((user, done) => {
 });
 
 // Middleware to check if the user is authenticated
-// function isUserAuthenticated(req, res, next) {
-//   if (req.user) {
-//     console.log(req.user);
-//     next();
-//   } else {
-//     res.send("You must login!");
-//   }
-// }
+function isUserAuthenticated(req, res, next) {
+  if (req.session.user) {
+    // is logged in, pass request to next middleware/route
+    next();
+  } else {
+    res.status(403);
+    res.send("You're not allowed to do this");
+  }
+}
 
 // Middleware - Check user is Logged in
 const checkUserLoggedIn = (req, res, next) => {
