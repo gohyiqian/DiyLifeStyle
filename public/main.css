@@ -32,6 +32,9 @@ textarea {
   padding: 5% 10%;
 }
 
+.alert {
+  padding: 0px;
+}
 /* HOMEPAGE */
 .mainfont {
   padding-top: 400px;
@@ -461,13 +464,14 @@ td:last-child {
   height: 600px;
 }
 /* PAGINATION */
-.pagination2 {
+.paginationOverride {
   display: flex;
   text-align: center;
   align-items: center;
   text-decoration: none;
   list-style: none;
   padding-left: 510px;
+  padding-top: 10px;
 }
 
 /* FOOTER */
@@ -579,6 +583,10 @@ img:hover {
   .btn {
     font-size: 14px;
   }
+  .paginationOverride {
+    padding-left: 350px;
+    padding-top: 20px;
+  }
 }
 
 @media (max-width: 990px) {
@@ -587,11 +595,15 @@ img:hover {
   }
   .calendar {
     width: 400px;
-    height: 300px;
+    height: 400px;
+  }
+  .paginationOverride {
+    padding-left: 200px;
+    padding-top: 30px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 760px) {
   .imgSize {
     height: 350px;
     width: 350px;
@@ -632,17 +644,29 @@ img:hover {
   #pricing {
     padding: 60px;
   }
+  .paginationOverride {
+    padding-left: 100px;
+    padding-top: 30px;
+  }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 450px) {
+  .index_img {
+    height: 120px;
+    width: 120px;
+  }
   .card {
-    height: 30rem;
+    height: 27rem;
   }
   .navbar-toggler {
-    margin-left: 320px;
+    margin-left: 290px;
   }
   .calendar {
-    width: 280px;
-    height: 300px;
+    width: 330px;
+    height: 400px;
+  }
+  .paginationOverride {
+    padding-left: 30px;
+    padding-top: 30px;
   }
 }

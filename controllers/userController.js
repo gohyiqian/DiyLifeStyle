@@ -24,6 +24,17 @@ controller.post("/signup", async (req, res) => {
   }
 });
 
+// Middleware to check if the user is authenticated
+function isUserAuthenticated(req, res, next) {
+  if (req.session.user) {
+    // is logged in, pass request to next middleware/route
+    next();
+  } else {
+    res.status(403);
+    res.send("You're not allowed to do this");
+  }
+}
+
 // USER LOG IN
 controller.get("/login", (req, res) => {
   if (!req.session.username) {

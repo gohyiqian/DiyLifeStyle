@@ -15,12 +15,12 @@
                                 <li class="list-group-item">Price: S$<%= Number.parseFloat(ele.price).toFixed(2) %></li>
                                 <% if (ele.qty > 0) { %>
                                 <li class="list-group-item">Quantity Selected: <%= ele.qty %> </li>                                             
-                                <li class="list-group-item"><button id="/diylifestyle/<%= ele.id %>" class="btn btn-secondary buyItemBtn">ADD TO CALENDAR</button></li>
+                                <li class="list-group-item"><a class=" btn btn-secondary" href="/users/calendar/<%= ele.id %>" style="color: white;">ADD TO CALENDAR</a></li>
                                 <% } else { %>
                                 <li class="list-group-item" style="color: red;">Sold Out!</li>  
                                 <% } %>
                                 <li class="list-group-item">
-                                    <form action="/diylifestyle/<%= ele.id %>?_method=DELETE" method="POST">
+                                    <form action="/diylifestyle/index/<%= pages %>/<%= ele.id %>?_method=DELETE" method="POST">
                                         <button type="submit" class="btn btn-warning my-2" value="DELETE"/>DELETE</button>
                                     </form>
                                 </li>

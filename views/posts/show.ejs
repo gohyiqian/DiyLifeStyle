@@ -5,8 +5,8 @@
                 <div class="col py-4">
                     <img class= "imgSize" src="<%= data.img %>" height=550 width=550></img>
                 </div>
-                <div class="col py-4">
-                    <div class="card shadow-lg mb-2 allProducts">
+                <div class="col py-4 mb-5">
+                    <div class="card shadow-lg mb-5 allProducts">
                         <h1><%= data.name %></h1>
                         <div><%= data.description %></div> <br>
                         <ul class="list-group list-group-flush">
@@ -19,15 +19,15 @@
                             <% } %>
                                 <li class="list-group-item"><a href="/diylifestyle/<%= data.id %>/edit" class="btn btn-secondary my-2">EDIT DISH</a></li>
                                 <li class="list-group-item"><%- include("../partials/alert.ejs") %> 
+                                <form action="/diylifestyle/<%= data.id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-warning" value="DELETE"/>DELETE DISH</button>
+                                </form>
                         </ul>
-                        <form action="/diylifestyle/<%= data.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-warning my-2" value="DELETE"/>DELETE DISH</button>
-                        </form>
                     </div>
                 </div>
             </div>
-            <a href="/diylifestyle/index/1" class="btn btn-secondary my-2">BACK</a>
-        </div> <br>
+        </div>
+        <a href="/diylifestyle/index/1" class="btn btn-secondary">BACK</a>
         <div class="white-section">
             <%- include("../partials/footer_v2.ejs") %>
         </div>

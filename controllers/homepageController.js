@@ -4,7 +4,7 @@ const controller = express.Router();
 
 // GET -- homepage page
 controller.get("/", async (req, res) => {
-  res.render("posts/homepage.ejs");
+  res.render("posts/homepage");
 });
 
 module.exports = controller;

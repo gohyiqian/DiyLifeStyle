@@ -118,9 +118,9 @@ controller.put("/:id", async (req, res) => {
 });
 
 // DELETE
-controller.delete("/:id", async (req, res) => {
+controller.delete("/index/:page/:id", async (req, res) => {
   await Food.deleteOne({ _id: req.params.id });
-  res.redirect("index/?success=true&action=delete");
+  res.redirect("/diylifestyle/index/1/?success=true&action=delete");
 });
 
 module.exports = controller;
