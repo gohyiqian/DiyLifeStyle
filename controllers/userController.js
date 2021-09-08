@@ -5,24 +5,9 @@ const bcrypt = require("bcrypt");
 const controller = express.Router();
 const session = require("express-session");
 
-// USER index page (Page with all meal plans)
-controller.get("/index", async (req, res) => {
-  const results = await Food.find();
-  // Get query parameters success and action
-  // If have, we display alert banners
-  // If not, no alert banners should be displayed
-  const success = req.query.success;
-  const action = req.query.action;
-  res.render("users/index.ejs", {
-    data: results,
-    success,
-    action,
-  });
-});
-
 // USER SIGN UP
 controller.get("/signup", (req, res) => {
-  res.render("users/signup.ejs");
+  res.render("users/signup");
 });
 
 controller.post("/signup", async (req, res) => {
@@ -42,7 +27,7 @@ controller.post("/signup", async (req, res) => {
 // USER LOG IN
 controller.get("/login", (req, res) => {
   if (!req.session.username) {
-    res.render("users/login.ejs");
+    res.render("users/login");
   } else {
     res.redirect("/");
   }
@@ -58,7 +43,7 @@ controller.post("/login", async (req, res) => {
 
   if (bcrypt.compareSync(req.body.password, selectedUser.password)) {
     req.session.username = selectedUser.username;
-    res.redirect("/users/index");
+    res.redirect("/diylifestyle/index/1");
   } else {
     res.send("Wrong password!");
   }
@@ -67,7 +52,7 @@ controller.post("/login", async (req, res) => {
 // USER CALENDAR
 controller.get("/calendar/:id", async (req, res) => {
   const item = await Food.findById(req.params.id);
-  res.render("users/calendar.ejs", {
+  res.render("users/calendar", {
     data: item,
   });
 });

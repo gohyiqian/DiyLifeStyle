@@ -14,25 +14,25 @@ controller.get("/seeds", async (req, res) => {
 });
 
 // MONGO QUERY PRACTICE
-Food.countDocuments({}, (err, data) => {
-  if (err) console.log(err.message);
-  console.log(`There are ${data} meal design in this database`);
-});
+// Food.countDocuments({}, (err, data) => {
+//   if (err) console.log(err.message);
+//   console.log(`There are ${data} meal design in this database`);
+// });
 
-(async () => {
-  // find all Meal Plans
-  // const allMeal = await Food.find();
-  // console.log(allMeal);
+// (async () => {
+//   // find all Meal Plans
+//   // const allMeal = await Food.find();
+//   // console.log(allMeal);
 
-  // find all Meal name only
-  const allMealNames = await Food.find({}, { name: 1, _id: 0 });
-  console.log(allMealNames);
+//   // find all Meal name only
+//   const allMealNames = await Food.find({}, { name: 1, _id: 0 });
+//   console.log(allMealNames);
 
-  // Find
-  const lemon = await Food.find({
-    ingredients: { $in: ["salmon", "asparagus"] },
-  });
-  console.log(lemon.length);
-})();
+//   // Find
+//   const lemon = await Food.find({
+//     ingredients: { $in: ["salmon", "asparagus"] },
+//   });
+//   console.log(lemon.length);
+// })();
 
 module.exports = controller;

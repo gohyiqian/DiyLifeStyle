@@ -49,7 +49,7 @@ Design is first conceived on Figma. Prototypes as show below:
 
 ![Detail Image](/public/images/editpage.jpg)
 
-## Learning Points
+## Learning Points for Personal Reference
 
 ### Sessions
 
@@ -70,3 +70,7 @@ app.get(
 ```
 
 'Scope' specifies which user's Google information that you want your app to get access to. Refer [here](https://developers.google.com/identity/protocols/oauth2/scopes) for the complete list of scopes.
+
+### Pagination
+
+Typically 2 parameters are involved: Size and Page Number

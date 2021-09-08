@@ -3,23 +3,86 @@ const Food = require("../models/food");
 const controller = express.Router();
 
 // GET -- user index page (Page with all items)
-controller.get("/index", async (req, res) => {
-  const results = await Food.find();
-  // Get query parameters success and action
-  // If have, we display alert banners
-  // If not, no alert banners should be displayed
+// controller.get("/index", async (req, res) => {
+//   const results = await Food.find();
+//   // Get query parameters success and action
+//   // If have, we display alert banners
+//   // If not, no alert banners should be displayed
+//   const success = req.query.success;
+//   const action = req.query.action;
+//   res.render("posts/index", {
+//     data: results,
+//     success,
+//     action,
+//   });
+// });
+
+// controller.get("/index/:page", async (req, res) => {
+//   const success = req.query.success;
+//   const action = req.query.action;
+//   // Pagination
+//   const perPage = 4; // max num of items per page
+//   const page = req.query.page || 1;
+//   const results = await Food.find({})
+//     .skip(perPage * page - perPage)
+//     .limit(perPage)
+//     .exec((err, food) => {
+//       Food.countDocuments().exec((err, count) => {
+//         if (err) return next(err);
+//         res.render("posts/index", {
+//           data: results,
+//           current: page,
+//           pages: Math.ceil(count / perPage),
+//           success,
+//           action,
+//         });
+//       });
+//     });
+// });
+
+controller.get("/index/:page", async (req, res, next) => {
   const success = req.query.success;
   const action = req.query.action;
-  res.render("posts/index.ejs", {
-    data: results,
-    success,
-    action,
-  });
+  const perPage = 4;
+  const page = req.params.page || 1;
+
+  await Food.find({})
+    .skip(perPage * page - perPage)
+    .limit(perPage)
+    .exec((err, food) => {
+      Food.countDocuments().exec((err, count) => {
+        if (err) return next(err);
+        res.render("posts/index", {
+          data: food,
+          current: page,
+          pages: Math.ceil(count / perPage),
+          success,
+          action,
+        });
+      });
+    });
 });
+
+// USER index page (limit Food per page)
+// http://localhost:3000/users/index?page=1&limit=6
+// controller.get("/index", async (req, res) => {
+//   const page = req.query.page;
+//   const limit = req.query.limit;
+//   const startIndex = (page - 1) * limit;
+//   const endIndex = page * limit;
+//   const results = await Food.find({}).skip(startIndex).limit(endIndex)
+//   const success = req.query.success;
+//   const action = req.query.action;
+//   res.render("users/index.ejs", {
+//     data: results,
+//     success,
+//     action,
+//   });
+// });
 
 // NEW -- new.ejs
 controller.get("/new", (req, res) => {
-  res.render("posts/new.ejs");
+  res.render("posts/new");
 });
 
 // POST - add new items
@@ -34,7 +97,7 @@ controller.get("/:id", async (req, res) => {
   const item = await Food.findById(req.params.id);
   const success = req.query.success;
   const action = req.query.action;
-  res.render("posts/show.ejs", {
+  res.render("posts/show", {
     data: item,
     success,
     action,
@@ -44,7 +107,7 @@ controller.get("/:id", async (req, res) => {
 // EDIT -- edit.ejs
 controller.get("/:id/edit", async (req, res) => {
   const item = await Food.findById(req.params.id);
-  res.render("posts/edit.ejs", { data: item });
+  res.render("posts/edit", { data: item });
 });
 
 // PUT -- for editing

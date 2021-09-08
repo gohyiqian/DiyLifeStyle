@@ -1,9 +1,31 @@
-<div class="paginator">
-    <a href="/?page=9" class="paginator-previous">Previous</a>
-    <a href="/?page=8" class="paginator-page paginator-page-first">8</a>
-    <a href="/?page=9" class="paginator-page">9</a>
-    <a href="/?page=10" class="paginator-current">10</a>
-    <a href="/?page=11" class="paginator-page">11</a>
-    <a href="/?page=12" class="paginator-page paginator-page-last">12</a>
-    <a href="/?page=11" class="paginator-next">Next</a>
-</div>
+<% if (pages > 0) { %>
+    <ul class="pagination2">
+        <% if (current == 1) { %>
+            <li class="page-item disabled invisible"><a>First</a></li>
+        <% } else { %>
+            <li><a class="page-link" href="/diylifestyle/index/1">First</a></li>
+        <% } %>
+
+        <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% if (i !== 1) { %>
+            <li class="page-item disabled"><a>...</a></li>
+        <% } %>
+
+        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i == current) { %>
+                <li class="page-item page-link active"><a><%= i %><span class="sr-only">(current)</span></a></li>
+            <% } else { %>
+                <li><a class="page-link" href="/diylifestyle/index/<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+                <li class="page-item disabled"><a>...</a></li>
+            <% } %>
+        <% } %>
+
+        <% if (current == pages) { %>
+            <li class="page-item disabled invisible "><a>Last</a></li>
+        <% } else { %>
+            <li><a class="page-item page-link" href="/diylifestyle/index/<%= pages %>">Last</a></li>
+        <% } %>
+    </ul>
+<% } %>

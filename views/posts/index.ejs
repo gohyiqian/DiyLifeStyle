@@ -2,7 +2,7 @@
 <body class="orange-background">
     <main>
         <%- include("../partials/alert.ejs") %>
-        <a href="/diylifestyle/new" class="btn btn-secondary mb-5">ADD NEW DISH</a>
+        <a href="/diylifestyle/new" class="btn btn-secondary mb-4">ADD NEW DISH</a>
         <div class="container">
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 allProducts">
                 <% data.forEach ( (ele) => { %>
@@ -31,8 +31,8 @@
                 <% }); %>
             </div>
             <%- include("../partials/pagination.ejs") %>
-            <%- include("../partials/footer.ejs") %>
         </div>
+        <%- include("../partials/footer.ejs") %>
     </main>
     <script type="text/javascript" src="/app.js"></script>
     <script type="text/javascript" src="/navbar.js"></script>

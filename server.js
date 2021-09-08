@@ -15,6 +15,8 @@ const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
 require("dotenv").config();
 
+app.set("view engine", "ejs");
+
 ///////////////////// Google Calendar Test ///////////////////
 // Create a new instance of oAuth and set Client ID & Client Secret
 const oAuth2Client = new OAuth2(
@@ -57,34 +59,34 @@ const event = {
 };
 
 // Check if we are busy or have an event on our calendar for the same time.
-calendar.freebusy.query(
-  {
-    resource: {
-      timeMin: eventStartTime,
-      timeMax: eventEndTime,
-      timeZone: "America/Denver",
-      items: [{ id: process.env.GOOGLE_CALENDAR_ID }],
-    },
-  },
-  (err, res) => {
-    // Check for errors in our query and log them if they exist.
-    if (err) return console.error("Free Busy Query Error: ", err);
+// calendar.freebusy.query(
+//   {
+//     resource: {
+//       timeMin: eventStartTime,
+//       timeMax: eventEndTime,
+//       timeZone: "America/Denver",
+//       items: [{ id: process.env.GOOGLE_CALENDAR_ID }],
+//     },
+//   },
+//   (err, res) => {
+//     // Check for errors in our query and log them if they exist.
+//     if (err) return console.error("Free Busy Query Error: ", err);
 
-    calendar.events.insert(
-      {
-        calendarId: process.env.GOOGLE_CALENDAR_ID,
-        resource: event,
-      },
-      (err) => {
-        // Check for errors and log them if they exist.
-        if (err) return console.error("Error Creating Calender Event:", err);
-        // Else log that the event was created.
-        return console.log("Calendar event successfully created.");
-      }
-    );
-    return console.log("Sorry Not Free");
-  }
-);
+//     calendar.events.insert(
+//       {
+//         calendarId: process.env.GOOGLE_CALENDAR_ID,
+//         resource: event,
+//       },
+//       (err) => {
+//         // Check for errors and log them if they exist.
+//         if (err) return console.error("Error Creating Calender Event:", err);
+//         // Else log that the event was created.
+//         return console.log("Calendar event successfully created.");
+//       }
+//     );
+//     return console.log("Sorry Not Free");
+//   }
+// );
 
 ///////////////////// Google Calendar Test  ///////////////////
 
@@ -104,7 +106,12 @@ const db = mongoose.connection;
 // CONNECT TO MONGODB
 mongoose.connect(
   mongoURI,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  },
   () => {
     console.log("The connection with mongod is established");
   }
@@ -127,6 +134,8 @@ app.use(
     keys: ["randomstringhere"],
   })
 );
+
+///////////////////// PASSPORT - GOOGLE OAUTH  ///////////////////
 
 app.use(passport.initialize()); // Used to initialize passport
 app.use(passport.session()); // Used to persist login sessions
@@ -161,12 +170,14 @@ const checkUserLoggedIn = (req, res, next) => {
 //Protected Route.
 app.get("/profile", checkUserLoggedIn, (req, res) => {
   // res.send(`<h1>${req.user.displayName}'s Profile Page</h1>`);
-  res.render("users/success.ejs", { user: req.user });
+  res.render("users/success", { user: req.user });
 });
 
 // app.get("/success", (req, res) =>
 //   res.render("users/success.ejs", { user: profile })
 // );
+
+///////////////////// PASSPORT - GOOGLE OAUTH  ///////////////////
 
 // Strategy config
 passport.use(

@@ -10,7 +10,7 @@ slider.oninput = function () {
 };
 
 // Tabs on edit page
-function changeTab(evt, cityName) {
+function changeTab(evt, itemName) {
   let i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   console.log(tabcontent.length);
@@ -21,7 +21,7 @@ function changeTab(evt, cityName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(itemName).style.display = "block";
   evt.currentTarget.className += " active";
 }
 
