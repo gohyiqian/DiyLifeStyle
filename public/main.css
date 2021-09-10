@@ -70,6 +70,11 @@ textarea {
   background-color: #fff;
 }
 
+.index_img {
+  height: 245px;
+  width: 245px;
+  object-fit: cover;
+}
 /* FEATURES & ICON SECTION */
 
 #features {
@@ -267,6 +272,10 @@ td:last-child {
   float: right;
   cursor: pointer;
   font-size: 28px;
+}
+.right {
+  cursor: pointer;
+  font-size: 23px;
 }
 
 .topright:hover {
@@ -566,6 +575,10 @@ img:hover {
   }
   .card {
     height: 30rem;
+  }
+  .paginationOverride {
+    padding-left: 420px;
+    padding-top: 20px;
   }
 }
 

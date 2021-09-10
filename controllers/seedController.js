@@ -1,5 +1,6 @@
 const express = require("express");
 const Food = require("../models/food");
+const foodSeed = require("../models/seeds");
 const controller = express.Router();
 
 // SEEDING

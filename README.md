@@ -74,3 +74,19 @@ app.get(
 ### Pagination
 
 Typically 2 parameters are involved: Size and Page Number
+
+### Understanding Node Error [ERR_HTTP_HEADERS_SENT]
+
+If you’re receiving this error, this means that a part of your code is attempting to send a header after the body has already been written to the HTTP response. It’s similar to when you send a formal letter. The letter can only be sent if you include an address. Without an address, your letter isn’t going anywhere, which means that nobody will be able to read its content. The headers and body on an HTTP responsive work the same way. When sending headers with your HTTP response, you must write the headers before sending the body, otherwise you won’t be able to send the content of the body.
+
+Refer [here](https://www.codementor.io/@oparaprosper79/understanding-node-error-err_http_headers_sent-117mpk82z8) to read more.
+
+### Use CSS object-fit Property
+
+```
+img{
+  object-fit: cover;
+}
+```
+
+The default property is 'fill', but use 'cover' to maintain the aspect ratio of <img> or <video> after you resized it to fit your dimension. 'cover' means the image will be clipped to fit. Refer [here](https://www.w3schools.com/css/css3_object-fit.asp) for more info.

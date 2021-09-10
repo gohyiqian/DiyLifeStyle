@@ -9,10 +9,11 @@
                 <div class="col animating" style="opacity: 1; top: 0px; left: 0px; transform: matrix(1, 0, 0, 1, 0, 0);">
                     <div class="card shadow-lg mb-3">
                         <div class="card-body">
-                            <a href="/diylifestyle/<%= ele.id %>"><img src="<%= ele.img %>" alt="diylifestyle" class="index_img" height="245px"/></a>
+                            <a href="/diylifestyle/<%= ele.id %>"><img src="<%= ele.img %>" alt="diylifestyle" class="index_img"/></a>
                             <h5 class="card-title"><a href="/diylifestyle/<%= ele.id %>" style="text-decoration: none;"><%= ele.name %></h5></a>
                             <ul class="list-group list-group-flush shadow-lg">
-                                <li class="list-group-item">Price: S$<%= Number.parseFloat(ele.price).toFixed(2) %></li>
+                                <!-- <li class="list-group-item">Price: S$<%= Number.parseFloat(ele.price).toFixed(2) %></li> -->
+                                <li class="list-group-item">Calories: <%= ele.calories %></li>
                                 <% if (ele.qty > 0) { %>
                                 <li class="list-group-item">Quantity Selected: <%= ele.qty %> </li>                                             
                                 <li class="list-group-item"><a class=" btn btn-secondary" href="/users/calendar/<%= ele.id %>" style="color: white;">ADD TO CALENDAR</a></li>

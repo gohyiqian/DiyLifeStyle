@@ -18,7 +18,10 @@ controller.post("/signup", async (req, res) => {
       username: req.body.username,
       password: hashedPassword,
     });
-    res.send("Ok, your account has been created.");
+    // res.send("Ok, your account has been created.");
+    res.render("users/signupSuccess", {
+      username: req.body.username,
+    });
   } catch (err) {
     res.send(`Unable to create a new account: ${err.message}`);
   }

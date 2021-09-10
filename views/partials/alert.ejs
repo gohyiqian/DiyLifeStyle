@@ -5,18 +5,22 @@
       <% if (action === "create") { %>
         <div class="py-2 alert-success" role="alert">
           Congrats! New Dish is successfully created!
+          <span onclick="this.parentElement.style.display='none'" class="right" >&times</span>
         </div>
       <% } else if (action === "update") { %>
         <div class="py-2 alert-info" role="alert">
           Dish is successfully updated!
+          <span onclick="this.parentElement.style.display='none'" class="right">&times</span>
         </div>
       <% } else if (action === "delete") { %>
         <div class="py-2 alert-danger" role="alert">
           Dish is successfully deleted!
+          <span onclick="this.parentElement.style.display='none'" class="right" >&times</span>
         </div>
       <% } else if (action === "bought") { %>
         <div class="py-2 alert-info" role="alert">
           Good Job for adding yet another new dish!
+          <span onclick="this.parentElement.style.display='none'" class="right">&times</span>
         </div>  
       <% } %>
     </div>

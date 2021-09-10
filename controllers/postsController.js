@@ -86,10 +86,10 @@ controller.get("/new", (req, res) => {
 });
 
 // POST - add new items
-controller.post("", async (req, res) => {
+controller.post("/index/:page", async (req, res) => {
   console.log(req.body);
   await Food.create(req.body);
-  res.redirect("diylifestyle/index?success=true&action=create");
+  res.redirect("?success=true&action=create");
 });
 
 // SHOW -- show.ejs

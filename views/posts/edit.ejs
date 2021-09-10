@@ -3,12 +3,12 @@
     <div class="container">
         <div class="row">
             <div class="col py-4">
-                <img class= "imgSize" src="<%= data.img %>" height=550 width=550></img>
+                <img class= "imgSize" src="<%= data.img %>" height=530 width=530></img>
             </div>
             <div class="col">
             <div class="mb-3"><strong>Calories Count: <%= data.calories %> kcal per bowl</strong></div>
                 <div class="tab shadow-lg">
-                    <button class="tablinks" onclick="changeTab(event, 'details')"id="defaultOpen">Details</button>
+                    <button class="tablinks" onclick="changeTab(event, 'details')" id="defaultOpen">Details</button>
                     <button class="tablinks" onclick="changeTab(event, 'ingredients')">Ingredients</button>
                     <button class="tablinks" onclick="changeTab(event, 'toppings')">Toppings</button>
                     <button class="tablinks" onclick="changeTab(event, 'nutrients')">Nutrients</button>
@@ -37,15 +37,17 @@
                 </div>
 
                 <div id="ingredients" class="tabcontent shadow-lg">
-                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> 
                     <h3>Main Ingredients</h3>
                     <p>Number of servings for the main ingredients</p>
                     <% for (let i=0;i< data.ingredients.length; i++){ %>
                         <div class="slidecontainer mt-3">
-                            <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
-                            <p><%= data.ingredients[i] %>: <span id="demo"></span></p>
+                            <input type="range" min="0" max="10" value="4" class="slider ingredientSlider" id="ingredientsRange">
+                            <p id="data"><%= data.ingredients[i] %>: 
+                                <span id="test" class="ingredientsOutput"></span>
+                            </p>
                         </div>
-                        <%} %>
+                    <%} %>
                 </div>
                   
                 <div id="toppings" class="tabcontent shadow-lg">
@@ -54,10 +56,12 @@
                     <p>Number of servings for the toppings</p>
                     <% for (let i=0;i< data.toppings.length; i++){ %>
                         <div class="slidecontainer mt-3">
-                            <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
-                            <p><%= data.toppings[i] %>: <span id="demo"></span></p>
+                            <input type="range" min="0" max="10" value="5" class="slider toppingsSlider" id="toppingsRange">
+                            <p><%= data.toppings[i] %>: 
+                                <span id="demo" class="toppingsOutput"></span>
+                            </p>
                         </div>
-                        <%} %>
+                    <%} %>
                 </div>
 
                 <div id="nutrients" class="tabcontent shadow-lg">
