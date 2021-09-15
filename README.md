@@ -2,13 +2,11 @@
 
 [Access the Landing Page Here](https://diylifestyle.herokuapp.com/)
 
-## Description
+## DiyLifeStyle Description
 
-Welcome to my first full-stack application!
+A subscription based meal-planning services to allow users to achieve a healthy lifestyle. Users can customise their own meal to monitor their daily or monthly calorie intake. This application strives to become a health and lifestyle product that lets user take charge and plan their ideal healthy lifestyle.
 
-## DiyLifeStyle
-
-This project imagines a health and lifestyle product that lets user take charge and plan ahead their daily meals. User can control the quantity and calories intake of each meal. The product ultimately aims to help user achieve a fulfilling lifestyle with balance meal plans and exercise regimes.
+User can control the quantity and calories intake of each meal. The product ultimately aims to help user achieve a fulfilling lifestyle with balance meal plans and exercise regimes.
 
 Design is first conceived on Figma. Prototypes as show below:
 
@@ -23,7 +21,7 @@ Design is first conceived on Figma. Prototypes as show below:
 - [express-session](https://www.npmjs.com/package/express-session) - For storing server-side data
 - [BCrypt](https://www.heroku.com) - Hashing algorithm for user login password
 - [MongoDB](https://www.mongodb.com/) - No-Relational Database
-- [Heroku](https://www.heroku.com) - PaaS Cloud Platform
+- [Heroku](https://www.heroku.com) - PaaS Provider
 
 ## Homepage
 
@@ -49,15 +47,23 @@ Design is first conceived on Figma. Prototypes as show below:
 
 ![Detail Image](/public/images/editpage.jpg)
 
+## Signup Success Page
+
+![Detail Image](/public/images/SignUpSuccess.jpg)
+
+## Login Success Page
+
+![Detail Image](/public/images/SignUpGoogleAuth.jpg)
+
 ## Learning Points for Personal Reference
 
-### Sessions
+### 1. Sessions
 
 In a typical web application, the credentials used to authenticate a user will only be transmitted during the login request. If authentication succeeds, a session will be established and maintained via a cookie set in the user's browser.
 
 Each subsequent request will not contain credentials, but rather the unique cookie that identifies the session. In order to support login sessions, Passport will serialize and deserialize user instances to and from the session.
 
-### OAuth
+### 2. OAuth
 
 ```
 app.get(
@@ -71,17 +77,21 @@ app.get(
 
 'Scope' specifies which user's Google information that you want your app to get access to. Refer [here](https://developers.google.com/identity/protocols/oauth2/scopes) for the complete list of scopes.
 
-### Pagination
+### 3. Pagination
 
 Typically 2 parameters are involved: Size and Page Number
 
-### Understanding Node Error [ERR_HTTP_HEADERS_SENT]
+### 4. Understanding Node Error [ERR_HTTP_HEADERS_SENT]
 
-If you’re receiving this error, this means that a part of your code is attempting to send a header after the body has already been written to the HTTP response. It’s similar to when you send a formal letter. The letter can only be sent if you include an address. Without an address, your letter isn’t going anywhere, which means that nobody will be able to read its content. The headers and body on an HTTP responsive work the same way. When sending headers with your HTTP response, you must write the headers before sending the body, otherwise you won’t be able to send the content of the body.
+This error means that a part of your code is attempting to send a header after the body has already been written to the HTTP response.
+
+It’s similar to when you send a formal letter. The letter can only be sent if you include an address. Without an address, your letter isn’t going anywhere, which means that nobody will be able to read its content.
+
+The headers and body on an HTTP responsive work the same way. When sending headers with your HTTP response, you must write the headers before sending the body, otherwise you won’t be able to send the content of the body.
 
 Refer [here](https://www.codementor.io/@oparaprosper79/understanding-node-error-err_http_headers_sent-117mpk82z8) to read more.
 
-### Use CSS object-fit Property
+### 5. Use CSS object-fit Property
 
 ```
 img{
@@ -89,4 +99,24 @@ img{
 }
 ```
 
-The default property is 'fill', but use 'cover' to maintain the aspect ratio of <img> or <video> after you resized it to fit your dimension. 'cover' means the image will be clipped to fit. Refer [here](https://www.w3schools.com/css/css3_object-fit.asp) for more info.
+The default property is 'fill', but use 'cover' to maintain the aspect ratio of img or video after you resized it to fit your dimension. 'cover' means the image will be clipped to fit. Refer [here](https://www.w3schools.com/css/css3_object-fit.asp) for more info.
+
+### 6. Simple CSS animation to improve user interaction
+
+```
+.animating:hover {
+  animation: animating 2s;
+}
+
+@keyframes animating {
+  0% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+  50% {
+    transform: matrix(1, 0, 0, 1, 0, -22);
+  }
+  100% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+}
+```

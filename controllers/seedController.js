@@ -14,6 +14,15 @@ controller.get("/seeds", async (req, res) => {
   }
 });
 
+controller.get("/unseed", async (req, res) => {
+  try {
+    await Food.collection.drop();
+    res.send("Food unseeded successfully");
+  } catch (err) {
+    console.log("Read Error Message here: ", err);
+  }
+});
+
 // MONGO QUERY PRACTICE
 // Food.countDocuments({}, (err, data) => {
 //   if (err) console.log(err.message);

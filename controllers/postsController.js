@@ -43,7 +43,7 @@ const controller = express.Router();
 controller.get("/index/:page", async (req, res, next) => {
   const success = req.query.success;
   const action = req.query.action;
-  const perPage = 4;
+  const perPage = 4; // show 4 per pages
   const page = req.params.page || 1;
 
   await Food.find({})
@@ -64,7 +64,7 @@ controller.get("/index/:page", async (req, res, next) => {
 });
 
 // USER index page (limit Food per page)
-// http://localhost:3000/users/index?page=1&limit=6
+//localhost:3000/users/index?page=1&limit=6
 // controller.get("/index", async (req, res) => {
 //   const page = req.query.page;
 //   const limit = req.query.limit;
@@ -81,7 +81,7 @@ controller.get("/index/:page", async (req, res, next) => {
 // });
 
 // NEW -- new.ejs
-controller.get("/new", (req, res) => {
+http: controller.get("/new", (req, res) => {
   res.render("posts/new");
 });
 

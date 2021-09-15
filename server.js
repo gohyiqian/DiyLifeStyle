@@ -9,6 +9,7 @@ const { google } = require("googleapis"); // Require oAuth2 from google instance
 const { OAuth2 } = google.auth;
 const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
+const passportLocalMongoose = require("passport-local-mongoose");
 require("dotenv").config();
 
 app.set("view engine", "ejs");

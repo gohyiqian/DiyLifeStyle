@@ -8,12 +8,12 @@ module.exports = [
     qty: 50,
     calories: 512,
     nutrition: {
-      carbohydrates: "10",
-      fat: "10",
+      carbohydrates: "12",
+      fat: "23",
       cholesterol: "10",
       sodium: "10",
       potassium: "10",
-      protein: "10",
+      protein: "30",
     },
     vitamins: {
       a: "10",
@@ -39,8 +39,8 @@ module.exports = [
       fat: "10",
       cholesterol: "10",
       sodium: "10",
-      potassium: "10",
-      protein: "10",
+      potassium: "20",
+      protein: "30",
     },
     vitamins: {
       a: "10",
@@ -63,11 +63,11 @@ module.exports = [
     calories: 568,
     nutrition: {
       carbohydrates: "10",
-      fat: "10",
+      fat: "20",
       cholesterol: "10",
       sodium: "10",
       potassium: "10",
-      protein: "10",
+      protein: "30",
     },
     vitamins: {
       a: "10",
@@ -91,7 +91,7 @@ module.exports = [
     nutrition: {
       carbohydrates: "10",
       fat: "10",
-      cholesterol: "10",
+      cholesterol: "5",
       sodium: "10",
       potassium: "10",
       protein: "10",
