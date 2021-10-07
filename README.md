@@ -1,8 +1,8 @@
-# GA-project-2
+# diyLifeStyle - Healthy Meal Planning App
 
 [Access the Landing Page Here](https://diylifestyle.herokuapp.com/)
 
-## DiyLifeStyle Description
+## Motivation
 
 A subscription based meal-planning services to allow users to achieve a healthy lifestyle. Users can customise their own meal to monitor their daily or monthly calorie intake. This application strives to become a health and lifestyle product that lets user take charge and plan their ideal healthy lifestyle.
 
@@ -23,7 +23,7 @@ Design is first conceived on Figma. Prototypes as show below:
 - [MongoDB](https://www.mongodb.com/) - No-Relational Database
 - [Heroku](https://www.heroku.com) - PaaS Provider
 
-## Homepage
+## Preview
 
 ![Home Image](/public/images/homepage.jpg)
 
