@@ -1,6 +1,6 @@
 # diyLifeStyle - Healthy Meal Planning App
 
-[Access the Landing Page Here](https://diylifestyle.herokuapp.com/)
+Access [Live Demo](https://diylifestyle.herokuapp.com/) :globe_with_meridians:
 
 ## Motivation
 
