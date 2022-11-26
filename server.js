@@ -1,30 +1,30 @@
 // DEPENDENCIES
-const express = require("express");
+const express = require('express');
 const app = express();
-const mongoose = require("mongoose");
-const methodOverride = require("method-override");
-const session = require("express-session");
-const passport = require("passport");
-const { google } = require("googleapis"); // Require oAuth2 from google instance.
+const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+const session = require('express-session');
+const passport = require('passport');
+const { google } = require('googleapis'); // Require oAuth2 from google instance.
 const { OAuth2 } = google.auth;
-const cookieSession = require("cookie-session");
-const flash = require("connect-flash");
-const passportLocalMongoose = require("passport-local-mongoose");
-require("dotenv").config();
+const cookieSession = require('cookie-session');
+const flash = require('connect-flash');
 
-app.set("view engine", "ejs");
+require('dotenv').config();
+
+app.set('view engine', 'ejs');
 
 // MODELS
-const User = require("./models/users");
+const User = require('./models/users');
 
 // CONTROLLERS
-const homepageController = require("./controllers/homepageController");
-const postsController = require("./controllers/postsController");
-const seedController = require("./controllers/seedController");
-const userController = require("./controllers/userController");
-const googleOAuthController = require("./controllers/googleOAuthController");
+const homepageController = require('./controllers/homepageController');
+const postsController = require('./controllers/postsController');
+const seedController = require('./controllers/seedController');
+const userController = require('./controllers/userController');
+const googleOAuthController = require('./controllers/googleOAuthController');
 
-// CONGFIG
+// CONFIG
 const mongoURI = process.env.MONGO_URI;
 const db = mongoose.connection;
 
@@ -38,25 +38,25 @@ mongoose.connect(
     useFindAndModify: false,
   },
   () => {
-    console.log("The connection with mongod is established");
+    console.log('The connection with mongod is established');
   }
 );
 
 // CHECK ERROR/SUCCESS
-db.on("connected", () => console.log("My database is connected"));
-db.on("error", (err) => console.log(`Got error! ${err.message}`));
-db.on("disconnected", () => console.log("My database is disconnected"));
+db.on('connected', () => console.log('My database is connected'));
+db.on('error', (err) => console.log(`Got error! ${err.message}`));
+db.on('disconnected', () => console.log('My database is disconnected'));
 
 // MIDDLEWARES
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride("_method"));
+app.use(methodOverride('_method'));
 
 // cookieSession config
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
-    keys: ["randomstringhere"],
+    keys: ['randomstringhere'],
   })
 );
 
@@ -65,10 +65,10 @@ app.use(passport.session()); // Used to persist login sessions
 app.use(flash()); // flash messages
 
 //Logout
-app.get("/logout", (req, res) => {
+app.get('/logout', (req, res) => {
   req.session = null;
   req.logout();
-  res.redirect("/");
+  res.redirect('/');
 });
 
 // USER LOGIN
@@ -88,10 +88,10 @@ app.use((req, res, next) => {
 
 // ROUTES
 app.use(homepageController);
-app.use("/diylifestyle", postsController);
+app.use('/diylifestyle', postsController);
 app.use(seedController);
-app.use("/users", userController);
-app.use("/auth", googleOAuthController);
+app.use('/users', userController);
+app.use('/auth', googleOAuthController);
 
 ///////////////////// Google Calendar Test ///////////////////
 // Create a new instance of oAuth and set Client ID & Client Secret
@@ -104,7 +104,7 @@ const oAuth2Client = new OAuth2(
 oAuth2Client.setCredentials({
   refresh_token: process.env.REFRESH_TOKEN,
 });
-const calendar = google.calendar({ version: "v3", auth: oAuth2Client }); // Create a new calender instance.
+const calendar = google.calendar({ version: 'v3', auth: oAuth2Client }); // Create a new calender instance.
 // Create a new event start date instance for temp uses in calendar.
 // 7 numbers specify year, month, day, hour, minute, second, and millisecond (in that order):
 const eventStartTime = new Date(2021, 8, 14, 8, 30, 0, 0);
@@ -125,56 +125,27 @@ const event = {
   description: `Meet with David to talk about the new client project and how to integrate the calendar for booking.`,
   start: {
     dateTime: eventStartTime,
-    timeZone: "America/Denver",
+    timeZone: 'America/Denver',
   },
   end: {
     dateTime: eventEndTime,
-    timeZone: "America/Denver",
+    timeZone: 'America/Denver',
   },
   colorId: 6,
 };
 
-// Check if we are busy or have an event on our calendar for the same time.
-// calendar.freebusy.query(
-//   {
-//     resource: {
-//       timeMin: eventStartTime,
-//       timeMax: eventEndTime,
-//       timeZone: "America/Denver",
-//       items: [{ id: process.env.GOOGLE_CALENDAR_ID }],
-//     },
-//   },
-//   (err, res) => {
-//     // Check for errors in our query and log them if they exist.
-//     if (err) return console.error("Free Busy Query Error: ", err);
-
-//     calendar.events.insert(
-//       {
-//         calendarId: process.env.GOOGLE_CALENDAR_ID,
-//         resource: event,
-//       },
-//       (err) => {
-//         // Check for errors and log them if they exist.
-//         if (err) return console.error("Error Creating Calender Event:", err);
-//         // Else log that the event was created.
-//         return console.log("Calendar event successfully created.");
-//       }
-//     );
-//     return console.log("Sorry Not Free");
-//   }
-// );
 ///////////////////// Google Calendar Test  ///////////////////
 
 // 404 MESSAGE
-app.use("*", (req, res) => {
+app.use('*', (req, res) => {
   res.status(404);
-  res.send("Page is not found, please try again later &#128540;");
+  res.send('Page is not found, please try again later &#128540;');
 });
 
 // ERR HANDLER
 function errorHandler(err, req, res, next) {
   if (err) {
-    res.send("<h1>There was an error, please try again later &#128540; </h1>");
+    res.send('<h1>There was an error, please try again later &#128540; </h1>');
   }
   res.json({ err: err });
 }
@@ -186,8 +157,8 @@ const server = app.listen(process.env.PORT, () => {
 });
 
 // GRACEFUL SHUTDOWN
-process.on("SIGTERM", () => {
-  console.log("Process is exiting...");
+process.on('SIGTERM', () => {
+  console.log('Process is exiting...');
   server.close(() => {
     db.close();
   });
