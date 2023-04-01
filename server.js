@@ -22,7 +22,7 @@ const googleOAuthController = require('./controllers/googleOAuthController');
 const notFoundController = require('./controllers/notFoundController');
 
 // CONFIG
-const mongoURI = process.env.MONGO_URI;
+const MONGO_URL = process.env.MONGO_URL;
 const db = mongoose.connection;
 
 // CONNECT TO MONGODB
