@@ -27,7 +27,7 @@ const db = mongoose.connection;
 
 // CONNECT TO MONGODB
 mongoose.connect(
-  mongoURI,
+  MONGO_URL,
   {
     useCreateIndex: true,
     useNewUrlParser: true,
