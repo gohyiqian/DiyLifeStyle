@@ -1,6 +1,6 @@
 <%- include("../partials/header.ejs") %>
 <body class="orange-section signup">
-  <div class="card shadow-lg mb-3" style="height: 30rem; width:20rem;">
+  <div class="card shadow-lg mb-3" style="height: 28rem; width:20rem;">
     <div class="card-body">
       <div class="text-center">
         <form class="form-signin" method="POST" action="/users/signup">
@@ -16,11 +16,7 @@
             <label for="password" class="sr-only"></label>
             <input type="password" name="password" class="form-control" placeholder="Create Password" >
           </div>
-          <div class="checkbox mb-4">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
+          <br/>
           <button class="btn btn-lg btn-warning btn-block" type="submit" value="Sign up">Sign Up</button>
         </form>
       </div><br>

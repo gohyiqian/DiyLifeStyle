@@ -11,11 +11,7 @@ const cookieSession = require('cookie-session');
 const flash = require('connect-flash');
 
 require('dotenv').config();
-
 app.set('view engine', 'ejs');
-
-// MODELS
-const User = require('./models/users');
 
 // CONTROLLERS
 const homepageController = require('./controllers/homepageController');
@@ -23,6 +19,7 @@ const postsController = require('./controllers/postsController');
 const seedController = require('./controllers/seedController');
 const userController = require('./controllers/userController');
 const googleOAuthController = require('./controllers/googleOAuthController');
+const notFoundController = require('./controllers/notFoundController');
 
 // CONFIG
 const mongoURI = process.env.MONGO_URI;
@@ -92,6 +89,7 @@ app.use('/diylifestyle', postsController);
 app.use(seedController);
 app.use('/users', userController);
 app.use('/auth', googleOAuthController);
+app.use('/notFound', notFoundController);
 
 ///////////////////// Google Calendar Test ///////////////////
 // Create a new instance of oAuth and set Client ID & Client Secret
@@ -139,16 +137,19 @@ const event = {
 // 404 MESSAGE
 app.use('*', (req, res) => {
   res.status(404);
-  res.send('Page is not found, please try again later &#128540;');
+  res.redirect('/notFound');
+  res.send(
+    '<h1>404 - Page is not found, please try again later &#128540;</h1>'
+  );
 });
 
 // ERR HANDLER
-function errorHandler(err, req, res, next) {
+const errorHandler = (err, req, res, next) => {
   if (err) {
     res.send('<h1>There was an error, please try again later &#128540; </h1>');
   }
   res.json({ err: err });
-}
+};
 app.use(errorHandler);
 
 // LISTEN

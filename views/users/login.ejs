@@ -1,6 +1,6 @@
 <%- include("../partials/header.ejs") %>
 <body class="orange-section login">
-  <div class="card shadow-lg mb-3" style="height: 30rem; width:20rem;">
+  <div class="card shadow-lg mb-3" style="height: 28rem; width:20rem;">
     <div class="card-body">
       <div class="text-center">
         <form class="form-signin" method="POST" action="/users/login">
@@ -16,12 +16,8 @@
             <label for="password" class="sr-only"></label>
             <input type="password" name="password" class="form-control" placeholder="Password" >
           </div>
-          <div class="checkbox mb-4">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="btn btn-lg btn-secondary btn-block" type="submit" >Log in</button>
+          <br/>
+          <button class="btn btn-lg btn-secondary btn-block" type="submit">Log in</button>
         </form>
       </div> <br>
       <a href=/auth/google class="fa fa-google"></a>
