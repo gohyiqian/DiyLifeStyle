@@ -18,12 +18,12 @@ const userController = require('./controllers/userController');
 const notFoundController = require('./controllers/notFoundController');
 
 // CONFIG
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URI = process.env.MONGO_URI;
 const db = mongoose.connection;
 
 // CONNECT TO MONGODB
 mongoose.connect(
-  MONGO_URL,
+  MONGO_URI,
   {
     useCreateIndex: true,
     useNewUrlParser: true,
